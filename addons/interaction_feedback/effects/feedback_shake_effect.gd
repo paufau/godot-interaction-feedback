@@ -4,7 +4,7 @@ class_name FeedbackShakeEffect
 extends FeedbackTriggerEffect
 
 @export var degrees := 1.5
-@export var half_duration_sec := 0.08
+@export var duration_sec := 0.16
 
 var _rotation := 0.0
 
@@ -30,8 +30,10 @@ func fire() -> void:
 
 	var direction := -1.0 if randf() < 0.5 else 1.0
 
-	tween.tween_property(self, ^"_rotation", deg_to_rad(degrees) * direction, half_duration_sec)
-	tween.tween_property(self, ^"_rotation", 0.0, half_duration_sec)
+	var half_duration := duration_sec / 2.0
+
+	tween.tween_property(self, ^"_rotation", deg_to_rad(degrees) * direction, half_duration)
+	tween.tween_property(self, ^"_rotation", 0.0, half_duration)
 
 
 func reset() -> void:
