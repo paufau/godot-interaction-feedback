@@ -3,6 +3,8 @@
 ![Static Badge](https://img.shields.io/badge/engine-Godot_4.7+-478CBF)
 ![Static Badge](https://img.shields.io/badge/effects-stackable-81B622)
 
+<img src="https://raw.githubusercontent.com/paufau/godot-interaction-feedback/refs/heads/main/assets/featured.png" />
+
 Easy to use UI animations for `Control` or `Node2D` nodes
 
 <table>
