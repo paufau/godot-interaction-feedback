@@ -1,0 +1,33 @@
+# EditorConfig for Godot Engine Projects
+root = true
+
+# Global default rules
+[*]
+charset = utf-8
+end_of_line = lf
+indent_size = 4
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# GDScript files (Godot official convention uses tabs)
+[*.gd]
+indent_style = tab
+
+# C# Source files (Standard .NET conventions use spaces)
+[*.cs]
+indent_style = space
+indent_size = 4
+
+# Godot configuration, scene, and resource files
+[*.{godot,tscn,tres,import}]
+indent_style = space
+indent_size = 4
+
+# Serialization and configuration formats
+[*.{json,yaml,yml}]
+indent_style = space
+indent_size = 2
+
+# Markdown documentation files
+[*.md]
+trim_trailing_whitespace = false
