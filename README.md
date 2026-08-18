@@ -5,7 +5,7 @@
 
 <img src="https://raw.githubusercontent.com/paufau/godot-interaction-feedback/refs/heads/main/assets/featured.png" />
 
-Easy to use UI animations for `Control` or `Node2D` nodes
+Plug-n-play UI animations for `Control` or `Node2D` nodes
 
 <table>
 	<tr>
