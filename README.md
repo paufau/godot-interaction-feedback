@@ -12,19 +12,9 @@ Easy to use UI animations for `Control` or `Node2D` nodes
 		<td width="33%"><img alt="Modulation" src="https://raw.githubusercontent.com/paufau/godot-interaction-feedback/refs/heads/main/assets/buttons/modulation.gif" /></td>
 	</tr>
 	<tr>
-		<td align="center">Scale</td>
-		<td align="center">Offset</td>
-		<td align="center">Modulation</td>
-	</tr>
-	<tr>
 		<td><img alt="Pulse" src="https://raw.githubusercontent.com/paufau/godot-interaction-feedback/refs/heads/main/assets/buttons/pulse.gif" /></td>
 		<td><img alt="Wobble" src="https://raw.githubusercontent.com/paufau/godot-interaction-feedback/refs/heads/main/assets/buttons/wobble.gif" /></td>
 		<td><img alt="Shake on press" src="https://raw.githubusercontent.com/paufau/godot-interaction-feedback/refs/heads/main/assets/buttons/shakeonpress.gif" /></td>
-	</tr>
-	<tr>
-		<td align="center">Pulse</td>
-		<td align="center">Wobble</td>
-		<td align="center">Shake on press</td>
 	</tr>
 	<tr>
 		<td><img alt="Sticky" src="https://raw.githubusercontent.com/paufau/godot-interaction-feedback/refs/heads/main/assets/buttons/sticky.gif" /></td>
@@ -32,23 +22,13 @@ Easy to use UI animations for `Control` or `Node2D` nodes
 		<td><img alt="Squishy" src="https://raw.githubusercontent.com/paufau/godot-interaction-feedback/refs/heads/main/assets/buttons/squishy.gif" /></td>
 	</tr>
 	<tr>
-		<td align="center">Sticky</td>
-		<td align="center">Elastic</td>
-		<td align="center">Squishy</td>
-	</tr>
-	<tr>
 		<td><img alt="Heartbeat" src="https://raw.githubusercontent.com/paufau/godot-interaction-feedback/refs/heads/main/assets/buttons/heartbeat.gif" /></td>
 		<td><img alt="Floating" src="https://raw.githubusercontent.com/paufau/godot-interaction-feedback/refs/heads/main/assets/buttons/floating.gif" /></td>
 		<td></td>
 	</tr>
-	<tr>
-		<td align="center">Heartbeat</td>
-		<td align="center">Floating</td>
-		<td></td>
-	</tr>
 </table>
 
-Every card above is a combination of the effects below. Open `addons/interaction_feedback/demo/demo.tscn` to click through all of them
+Open `addons/interaction_feedback/demo/demo.tscn` to click through all of them
 
 ## Usage
 
@@ -90,7 +70,7 @@ feedback.add_effect(FeedbackShakeEffect.new())
 | `FeedbackStickyEffect`   | Leans toward the pointer       |
 | `FeedbackHapticEffect`   | Vibrates the device            |
 
-On touch screens hover effects are skipped by default, since there is no pointer to hover with. Override per node with `touch_mode`.
+> Note: On touch screens hover effects are skipped by default, since there is no pointer to hover with. Override per node with `touch_mode`
 
 ## Author
 
