@@ -30,7 +30,9 @@ Plug-n-play UI animations for `Control` or `Node2D` nodes
 	</tr>
 </table>
 
-Open `addons/interaction_feedback/demo/demo.tscn` to click through all of them
+Enjoy interactive example: https://paufau.itch.io/godot-interaction-feedback
+
+...or open `addons/interaction_feedback/demo/demo.tscn` to click through all of them
 
 ## Usage
 
