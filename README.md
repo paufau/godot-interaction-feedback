@@ -5,7 +5,11 @@
 
 <img src="https://raw.githubusercontent.com/paufau/godot-interaction-feedback/refs/heads/main/assets/featured.png" />
 
+<br>
+
 Plug-n-play UI animations for `Control` or `Node2D` nodes
+
+<br>
 
 <table>
 	<tr>
@@ -30,9 +34,11 @@ Plug-n-play UI animations for `Control` or `Node2D` nodes
 	</tr>
 </table>
 
-Enjoy interactive example: https://paufau.itch.io/godot-interaction-feedback
+<br>
 
-...or open `addons/interaction_feedback/demo/demo.tscn` to click through all of them
+Enjoy interactive example: https://itch.io/embed-upload/18857959?color=a4cfff
+
+...or open `addons/interaction_feedback/demo/demo.tscn` in the editor to click through all of them
 
 ## Usage
 
