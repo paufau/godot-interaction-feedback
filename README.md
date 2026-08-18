@@ -24,7 +24,7 @@ Easy to use UI animations for `Control` or `Node2D` nodes
 	<tr>
 		<td><img alt="Heartbeat" src="https://raw.githubusercontent.com/paufau/godot-interaction-feedback/refs/heads/main/assets/buttons/heartbeat.gif" /></td>
 		<td><img alt="Floating" src="https://raw.githubusercontent.com/paufau/godot-interaction-feedback/refs/heads/main/assets/buttons/floating.gif" /></td>
-		<td></td>
+		<td><img alt="Offset + scale + z" src="https://raw.githubusercontent.com/paufau/godot-interaction-feedback/refs/heads/main/assets/buttons/offsetscalez.gif" /></td>
 	</tr>
 </table>
 
