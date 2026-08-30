@@ -45,6 +45,9 @@ static var _warned_missing_input_mode := false
 @export var hover_on_focus := true
 @export var respect_disabled := true
 
+@export_tool_button("Enable parent input_pickable")
+var _enable_input_handling_button := _enable_parent_input_handling
+
 var base_position: Vector2:
 	get:
 		var channel: FeedbackChannel = FeedbackOffsetChannel.instance
@@ -54,7 +57,11 @@ var base_position: Vector2:
 
 		return (_target as Node2D).position if _target is Node2D else Vector2.ZERO
 	set(value):
-		if _is_control or base_position.is_equal_approx(value):
+		if _is_control:
+			push_warning("base_position is ignored for Control targets; move the Control's own position/offset instead.")
+			return
+
+		if base_position.is_equal_approx(value):
 			return
 
 		_bases[FeedbackOffsetChannel.instance] = value
@@ -73,6 +80,7 @@ var _input_mode: Node
 var _effects: Array[FeedbackEffect] = []
 var _bases := {}
 var _written := {}
+var _external_modification_guard := ExternalModificationGuard.new()
 
 
 ## Creates a compositor and parents it to "target"
@@ -133,6 +141,8 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	_external_modification_guard.check(_target)
+
 	for effect in _effects:
 		if effect.enabled:
 			effect._tick(delta)
@@ -172,6 +182,15 @@ func add_effect(effect: FeedbackEffect) -> void:
 
 	if _hovered or _pressed:
 		replay_state(effect)
+
+
+func remove_effect(effect: FeedbackEffect) -> void:
+	if effect != null and effect.get_parent() == self:
+		remove_child(effect)
+
+
+func get_effects() -> Array[FeedbackEffect]:
+	return _effects.duplicate()
 
 
 func get_target() -> CanvasItem:
@@ -231,7 +250,6 @@ func _register_effect(effect: FeedbackEffect) -> void:
 		effect.animation_started.connect(_wake)
 
 	if _target != null:
-		_warn_if_contested(effect)
 		_claim(effect._get_channel())
 
 	# An effect moving since its own _ready emitted animation_started before connection existed
@@ -245,25 +263,6 @@ func _handle_child_exiting(child: Node) -> void:
 
 	_effects.erase(child)
 	_wake()
-
-
-# A Node2D has no spare transform layer, so an offset effect takes over its
-# position outright; other writers must go through base_position from then on
-func _warn_if_contested(effect: FeedbackEffect) -> void:
-	if _is_control or not (effect._get_channel() is FeedbackOffsetChannel):
-		return
-
-	push_warning(
-		(
-			(
-				"%s drives the offset channel on %s, so InteractionFeedback now owns "
-				+"that node's position. Move it through InteractionFeedback"
-				+".base_position instead of assigning position directly, or the two "
-				+"will overwrite each other."
-			)
-			% [effect.name, _target.name]
-		)
-	)
 
 
 func _connect_target() -> void:
@@ -290,6 +289,24 @@ func _connect_target() -> void:
 		_connect_focus(control)
 		_catch_up_hover()
 
+		return
+
+	if _target is CollisionObject2D:
+		var parent := _target as CollisionObject2D
+
+		if not parent.input_pickable:
+			push_warning(
+				(
+					"%s has input_pickable disabled; InteractionFeedback can't auto-connect "
+					+"hover/press. Enable input_pickable on the target."
+				)
+				% parent.name
+			)
+
+		parent.mouse_entered.connect(_handle_pointer_entered)
+		parent.mouse_exited.connect(_handle_collision_exited)
+		parent.input_event.connect(_handle_collision_input)
+
 
 func _connect_focus(control: Control) -> void:
 	if not hover_on_focus:
@@ -309,8 +326,7 @@ func _catch_up_hover() -> void:
 		_handle_pointer_entered()
 
 	if hover_on_focus and _target is Control and (_target as Control).has_focus():
-		_is_focused = true
-		_update_hover()
+		_update_focus(true)
 
 
 func _handle_pointer_entered() -> void:
@@ -327,12 +343,15 @@ func _handle_pointer_exited() -> void:
 
 
 func _handle_focus_entered() -> void:
-	_is_focused = true
-	_update_hover()
+	_update_focus(true)
 
 
 func _handle_focus_exited() -> void:
-	_is_focused = false
+	_update_focus(false)
+
+
+func _update_focus(focused: bool) -> void:
+	_is_focused = focused and not _is_mouse_over
 	_update_hover()
 
 
@@ -342,6 +361,18 @@ func _update_hover() -> void:
 
 func _is_disabled() -> bool:
 	return respect_disabled and _target is BaseButton and (_target as BaseButton).disabled
+
+
+func _handle_collision_input(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
+	_handle_gui_input(event)
+
+
+func _handle_collision_exited() -> void:
+	_handle_pointer_exited()
+
+	if _pressed:
+		_press_index = -1
+		set_pressed(false)
 
 
 func _handle_gui_input(event: InputEvent) -> void:
@@ -385,6 +416,7 @@ func _wake() -> void:
 
 func _sleep() -> void:
 	set_process(false)
+	_external_modification_guard.reset()
 
 
 func _compose() -> bool:
@@ -416,7 +448,7 @@ func _compose() -> bool:
 
 func _write_channels() -> void:
 	for channel: FeedbackChannel in _written:
-		channel.write(_target, _bases[channel], _get_composed_value(channel))
+		_external_modification_guard.record(channel, channel.write(_target, _bases[channel], _get_composed_value(channel)))
 
 
 func _accumulate(channel: FeedbackChannel, value: Variant) -> void:
@@ -451,6 +483,8 @@ func _capture_bases() -> void:
 	for channel: FeedbackChannel in _written:
 		_bases[channel] = channel.capture_base(_target)
 
+	_external_modification_guard.reset()
+
 
 # Lands a layout move while the compositor is asleep and composing nothing
 func _apply_base_position() -> void:
@@ -459,6 +493,7 @@ func _apply_base_position() -> void:
 
 	var channel := FeedbackOffsetChannel.instance
 	channel.write(_target, base_position, _get_composed_value(channel))
+	_external_modification_guard.reset()
 
 
 func _apply_pivot() -> void:
@@ -477,3 +512,49 @@ func _is_hover_suppressed() -> bool:
 		return DisplayServer.is_touchscreen_available()
 
 	return _input_mode.is_touch_active()
+
+
+func _parent_can_handle_input() -> bool:
+	var parent := get_parent() as CollisionObject2D
+
+	return parent == null or parent.input_pickable
+
+
+func _needs_input_fix() -> bool:
+	return auto_connect and not _parent_can_handle_input()
+
+
+func _get_configuration_warnings() -> PackedStringArray:
+	if not _needs_input_fix():
+		return PackedStringArray()
+
+	return [
+		"The parent CollisionObject2D has input_pickable disabled, so its "
+		+"mouse/input signals never fire. Use the \"Enable parent input_pickable\" "
+		+"button, or turn input_pickable on yourself."
+	]
+
+
+func _validate_property(property: Dictionary) -> void:
+	if property.name == "_enable_input_handling_button" and not _needs_input_fix():
+		property.usage = PROPERTY_USAGE_NONE
+
+
+func _enable_parent_input_handling() -> void:
+	if not Engine.is_editor_hint():
+		return
+
+	var parent := get_parent() as CollisionObject2D
+
+	if parent == null:
+		return
+
+	var undo_redo := EditorInterface.get_editor_undo_redo()
+
+	undo_redo.create_action("Enable input_pickable")
+	undo_redo.add_do_property(parent, "input_pickable", true)
+	undo_redo.add_undo_property(parent, "input_pickable", parent.input_pickable)
+	undo_redo.commit_action()
+
+	update_configuration_warnings()
+	notify_property_list_changed()

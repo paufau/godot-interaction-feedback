@@ -1,0 +1,546 @@
+[gd_scene format=3 uid="uid://bswv7sc1reh0r"]
+
+[ext_resource type="Script" uid="uid://dgnfej0vnae1p" path="res://addons/interaction_feedback/interaction_feedback.gd" id="1_fdbk"]
+[ext_resource type="Script" uid="uid://bg75wl2v4x2yr" path="res://addons/interaction_feedback/effects/feedback_scale_effect.gd" id="2_scal"]
+[ext_resource type="Script" uid="uid://uowk6ctfd4wg" path="res://addons/interaction_feedback/effects/feedback_shake_effect.gd" id="3_shak"]
+[ext_resource type="Script" uid="uid://bctnnlgbvhxr5" path="res://addons/interaction_feedback/effects/feedback_offset_effect.gd" id="4_offs"]
+[ext_resource type="Script" uid="uid://dde72tlibetmu" path="res://addons/interaction_feedback/effects/feedback_z_level_effect.gd" id="5_zlvl"]
+[ext_resource type="Script" uid="uid://curkkv0sixcn5" path="res://addons/interaction_feedback/effects/feedback_pulse_effect.gd" id="6_puls"]
+[ext_resource type="Script" uid="uid://b8ig24xnb8pjf" path="res://addons/interaction_feedback/effects/feedback_modulate_effect.gd" id="7_modu"]
+[ext_resource type="Script" uid="uid://brbes7cg0qvms" path="res://addons/interaction_feedback/effects/feedback_wobble_effect.gd" id="8_wobb"]
+[ext_resource type="Script" uid="uid://bpainjbj3pqmt" path="res://addons/interaction_feedback/effects/feedback_sticky_effect.gd" id="9_stic"]
+[ext_resource type="Script" uid="uid://5q8vj1yhnntt" path="res://addons/interaction_feedback/effects/feedback_haptic_effect.gd" id="10_hapt"]
+
+[sub_resource type="RectangleShape2D" id="Rect_card"]
+size = Vector2(294, 78)
+
+[sub_resource type="StyleBoxFlat" id="SB_card"]
+bg_color = Color(0.408, 0.635, 0.933, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0.2, 0.35, 0.55, 0.12)
+shadow_size = 12
+shadow_offset = Vector2(0, 4)
+
+[node name="Demo2D" type="Node2D" unique_id=2012555777]
+
+[node name="Cards" type="Node2D" parent="." unique_id=1794188645]
+position = Vector2(960, 540)
+
+[node name="Scale" type="Area2D" parent="Cards" unique_id=293764761]
+position = Vector2(-318, -188)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cards/Scale" unique_id=219731612]
+shape = SubResource("Rect_card")
+
+[node name="Panel" type="Panel" parent="Cards/Scale" unique_id=108923829]
+offset_left = -147.0
+offset_top = -39.0
+offset_right = 147.0
+offset_bottom = 39.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("SB_card")
+
+[node name="Label" type="Label" parent="Cards/Scale" unique_id=1822480427]
+offset_left = -147.0
+offset_top = -39.0
+offset_right = 147.0
+offset_bottom = 39.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "Scale"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InteractionFeedback" type="Node" parent="Cards/Scale" unique_id=312309413]
+script = ExtResource("1_fdbk")
+
+[node name="FeedbackScaleEffect" type="Node" parent="Cards/Scale/InteractionFeedback" unique_id=622742557]
+script = ExtResource("2_scal")
+transition = 10
+
+[node name="Modulation" type="Area2D" parent="Cards" unique_id=386635833]
+position = Vector2(0, -188)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cards/Modulation" unique_id=345453652]
+shape = SubResource("Rect_card")
+
+[node name="Panel" type="Panel" parent="Cards/Modulation" unique_id=11524764]
+offset_left = -147.0
+offset_top = -39.0
+offset_right = 147.0
+offset_bottom = 39.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("SB_card")
+
+[node name="Label" type="Label" parent="Cards/Modulation" unique_id=996932011]
+offset_left = -147.0
+offset_top = -39.0
+offset_right = 147.0
+offset_bottom = 39.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "Modulation"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InteractionFeedback" type="Node" parent="Cards/Modulation" unique_id=605368579]
+script = ExtResource("1_fdbk")
+
+[node name="FeedbackModulateEffect" type="Node" parent="Cards/Modulation/InteractionFeedback" unique_id=2071116848]
+script = ExtResource("7_modu")
+hovered_modulate = Color(0, 1.1001469, 1.1001469, 1)
+pressed_modulate = Color(0.9019608, 0, 0.22352941, 1)
+
+[node name="Offset" type="Area2D" parent="Cards" unique_id=1330497632]
+position = Vector2(318, -188)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cards/Offset" unique_id=831638917]
+shape = SubResource("Rect_card")
+
+[node name="Panel" type="Panel" parent="Cards/Offset" unique_id=1059767194]
+offset_left = -147.0
+offset_top = -39.0
+offset_right = 147.0
+offset_bottom = 39.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("SB_card")
+
+[node name="Label" type="Label" parent="Cards/Offset" unique_id=655339504]
+offset_left = -147.0
+offset_top = -39.0
+offset_right = 147.0
+offset_bottom = 39.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "Offset"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InteractionFeedback" type="Node" parent="Cards/Offset" unique_id=603081406]
+script = ExtResource("1_fdbk")
+
+[node name="FeedbackOffsetEffect" type="Node" parent="Cards/Offset/InteractionFeedback" unique_id=1193740045]
+script = ExtResource("4_offs")
+hovered_offset = Vector2(0, -6)
+
+[node name="ShakeOnHover" type="Area2D" parent="Cards" unique_id=1600652489]
+position = Vector2(-318, -94)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cards/ShakeOnHover" unique_id=1188626815]
+shape = SubResource("Rect_card")
+
+[node name="Panel" type="Panel" parent="Cards/ShakeOnHover" unique_id=342204163]
+offset_left = -147.0
+offset_top = -39.0
+offset_right = 147.0
+offset_bottom = 39.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("SB_card")
+
+[node name="Label" type="Label" parent="Cards/ShakeOnHover" unique_id=1025246746]
+offset_left = -147.0
+offset_top = -39.0
+offset_right = 147.0
+offset_bottom = 39.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "Shake on hover"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InteractionFeedback" type="Node" parent="Cards/ShakeOnHover" unique_id=1652767481]
+script = ExtResource("1_fdbk")
+
+[node name="FeedbackShakeEffect" type="Node" parent="Cards/ShakeOnHover/InteractionFeedback" unique_id=1674449677]
+script = ExtResource("3_shak")
+transition = 1
+
+[node name="ShakeOnPress" type="Area2D" parent="Cards" unique_id=1665506609]
+position = Vector2(0, -94)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cards/ShakeOnPress" unique_id=2141186951]
+shape = SubResource("Rect_card")
+
+[node name="Panel" type="Panel" parent="Cards/ShakeOnPress" unique_id=1293855193]
+offset_left = -147.0
+offset_top = -39.0
+offset_right = 147.0
+offset_bottom = 39.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("SB_card")
+
+[node name="Label" type="Label" parent="Cards/ShakeOnPress" unique_id=1070677588]
+offset_left = -147.0
+offset_top = -39.0
+offset_right = 147.0
+offset_bottom = 39.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "Shake on press"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InteractionFeedback" type="Node" parent="Cards/ShakeOnPress" unique_id=652475368]
+script = ExtResource("1_fdbk")
+
+[node name="FeedbackShakeEffect" type="Node" parent="Cards/ShakeOnPress/InteractionFeedback" unique_id=1716086043]
+script = ExtResource("3_shak")
+degrees = 3.0
+on_hover = false
+on_press = true
+transition = 1
+
+[node name="Pulse" type="Area2D" parent="Cards" unique_id=1893790507]
+position = Vector2(318, -94)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cards/Pulse" unique_id=1655643933]
+shape = SubResource("Rect_card")
+
+[node name="Panel" type="Panel" parent="Cards/Pulse" unique_id=35637292]
+offset_left = -147.0
+offset_top = -39.0
+offset_right = 147.0
+offset_bottom = 39.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("SB_card")
+
+[node name="Label" type="Label" parent="Cards/Pulse" unique_id=1209831668]
+offset_left = -147.0
+offset_top = -39.0
+offset_right = 147.0
+offset_bottom = 39.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "Pulse"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InteractionFeedback" type="Node" parent="Cards/Pulse" unique_id=494324639]
+script = ExtResource("1_fdbk")
+
+[node name="FeedbackPulseEffect" type="Node" parent="Cards/Pulse/InteractionFeedback" unique_id=1606925861]
+script = ExtResource("6_puls")
+amplitude = 0.03
+trigger = 1
+
+[node name="Wobble" type="Area2D" parent="Cards" unique_id=1994839961]
+position = Vector2(-318, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cards/Wobble" unique_id=1507108145]
+shape = SubResource("Rect_card")
+
+[node name="Panel" type="Panel" parent="Cards/Wobble" unique_id=1652425012]
+offset_left = -147.0
+offset_top = -39.0
+offset_right = 147.0
+offset_bottom = 39.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("SB_card")
+
+[node name="Label" type="Label" parent="Cards/Wobble" unique_id=1914913743]
+offset_left = -147.0
+offset_top = -39.0
+offset_right = 147.0
+offset_bottom = 39.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "Wobble"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InteractionFeedback" type="Node" parent="Cards/Wobble" unique_id=1662227481]
+script = ExtResource("1_fdbk")
+
+[node name="FeedbackWobbleEffect" type="Node" parent="Cards/Wobble/InteractionFeedback" unique_id=1681503775]
+script = ExtResource("8_wobb")
+trigger = 1
+
+[node name="Sticky" type="Area2D" parent="Cards" unique_id=1348146372]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cards/Sticky" unique_id=1408015635]
+shape = SubResource("Rect_card")
+
+[node name="Panel" type="Panel" parent="Cards/Sticky" unique_id=1304066927]
+offset_left = -147.0
+offset_top = -39.0
+offset_right = 147.0
+offset_bottom = 39.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("SB_card")
+
+[node name="Label" type="Label" parent="Cards/Sticky" unique_id=267442127]
+offset_left = -147.0
+offset_top = -39.0
+offset_right = 147.0
+offset_bottom = 39.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "Sticky"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InteractionFeedback" type="Node" parent="Cards/Sticky" unique_id=1454500972]
+script = ExtResource("1_fdbk")
+
+[node name="FeedbackStickyEffect" type="Node" parent="Cards/Sticky/InteractionFeedback" unique_id=1812717461]
+script = ExtResource("9_stic")
+
+[node name="Haptic" type="Area2D" parent="Cards" unique_id=350851140]
+position = Vector2(318, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cards/Haptic" unique_id=1846393862]
+shape = SubResource("Rect_card")
+
+[node name="Panel" type="Panel" parent="Cards/Haptic" unique_id=1431818494]
+offset_left = -147.0
+offset_top = -39.0
+offset_right = 147.0
+offset_bottom = 39.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("SB_card")
+
+[node name="Label" type="Label" parent="Cards/Haptic" unique_id=503766908]
+offset_left = -147.0
+offset_top = -39.0
+offset_right = 147.0
+offset_bottom = 39.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "Haptic (touch)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InteractionFeedback" type="Node" parent="Cards/Haptic" unique_id=126983612]
+script = ExtResource("1_fdbk")
+
+[node name="FeedbackHapticEffect" type="Node" parent="Cards/Haptic/InteractionFeedback" unique_id=309002227]
+script = ExtResource("10_hapt")
+on_hover = false
+on_press = true
+
+[node name="OffsetAndRaise" type="Area2D" parent="Cards" unique_id=1860809462]
+position = Vector2(-318, 94)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cards/OffsetAndRaise" unique_id=174655907]
+shape = SubResource("Rect_card")
+
+[node name="Panel" type="Panel" parent="Cards/OffsetAndRaise" unique_id=1144404144]
+offset_left = -147.0
+offset_top = -39.0
+offset_right = 147.0
+offset_bottom = 39.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("SB_card")
+
+[node name="Label" type="Label" parent="Cards/OffsetAndRaise" unique_id=973160368]
+offset_left = -147.0
+offset_top = -39.0
+offset_right = 147.0
+offset_bottom = 39.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "Offset + Scale + Z"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InteractionFeedback" type="Node" parent="Cards/OffsetAndRaise" unique_id=1792974701]
+script = ExtResource("1_fdbk")
+
+[node name="FeedbackOffsetEffect" type="Node" parent="Cards/OffsetAndRaise/InteractionFeedback" unique_id=2064680920]
+script = ExtResource("4_offs")
+hovered_offset = Vector2(0, -6)
+
+[node name="FeedbackScaleEffect" type="Node" parent="Cards/OffsetAndRaise/InteractionFeedback" unique_id=1542509138]
+script = ExtResource("2_scal")
+hovered_scale = 1.12
+transition = 10
+
+[node name="FeedbackZLevelEffect" type="Node" parent="Cards/OffsetAndRaise/InteractionFeedback" unique_id=1167682308]
+script = ExtResource("5_zlvl")
+
+[node name="Elastic" type="Area2D" parent="Cards" unique_id=2069170833]
+position = Vector2(0, 94)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cards/Elastic" unique_id=604689494]
+shape = SubResource("Rect_card")
+
+[node name="Panel" type="Panel" parent="Cards/Elastic" unique_id=1955308141]
+offset_left = -147.0
+offset_top = -39.0
+offset_right = 147.0
+offset_bottom = 39.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("SB_card")
+
+[node name="Label" type="Label" parent="Cards/Elastic" unique_id=1253654413]
+offset_left = -147.0
+offset_top = -39.0
+offset_right = 147.0
+offset_bottom = 39.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "Elastic"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InteractionFeedback" type="Node" parent="Cards/Elastic" unique_id=776271946]
+script = ExtResource("1_fdbk")
+
+[node name="FeedbackScaleEffect" type="Node" parent="Cards/Elastic/InteractionFeedback" unique_id=1783054312]
+script = ExtResource("2_scal")
+hovered_scale = 1.12
+duration_sec = 0.5
+y_lag = 1.0
+transition = 6
+
+[node name="Sink" type="Area2D" parent="Cards" unique_id=1341951844]
+position = Vector2(318, 94)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cards/Sink" unique_id=1241976983]
+shape = SubResource("Rect_card")
+
+[node name="Panel" type="Panel" parent="Cards/Sink" unique_id=1784224476]
+offset_left = -147.0
+offset_top = -39.0
+offset_right = 147.0
+offset_bottom = 39.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("SB_card")
+
+[node name="Label" type="Label" parent="Cards/Sink" unique_id=1907167122]
+offset_left = -147.0
+offset_top = -39.0
+offset_right = 147.0
+offset_bottom = 39.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "Sink"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InteractionFeedback" type="Node" parent="Cards/Sink" unique_id=420095639]
+script = ExtResource("1_fdbk")
+
+[node name="FeedbackOffsetEffect" type="Node" parent="Cards/Sink/InteractionFeedback" unique_id=1104005587]
+script = ExtResource("4_offs")
+hovered_offset = Vector2(0, 0)
+pressed_offset = Vector2(0, 4)
+
+[node name="Heartbeat" type="Area2D" parent="Cards" unique_id=1139053675]
+position = Vector2(-318, 188)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cards/Heartbeat" unique_id=2069467580]
+shape = SubResource("Rect_card")
+
+[node name="Panel" type="Panel" parent="Cards/Heartbeat" unique_id=363258959]
+offset_left = -147.0
+offset_top = -39.0
+offset_right = 147.0
+offset_bottom = 39.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("SB_card")
+
+[node name="Label" type="Label" parent="Cards/Heartbeat" unique_id=335703094]
+offset_left = -147.0
+offset_top = -39.0
+offset_right = 147.0
+offset_bottom = 39.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "Heartbeat"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InteractionFeedback" type="Node" parent="Cards/Heartbeat" unique_id=520176845]
+script = ExtResource("1_fdbk")
+
+[node name="FeedbackPulseEffect" type="Node" parent="Cards/Heartbeat/InteractionFeedback" unique_id=989714874]
+script = ExtResource("6_puls")
+amplitude = 0.06
+trigger = 1
+period_sec = 0.35
+
+[node name="Squishy" type="Area2D" parent="Cards" unique_id=45542802]
+position = Vector2(0, 188)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cards/Squishy" unique_id=769428084]
+shape = SubResource("Rect_card")
+
+[node name="Panel" type="Panel" parent="Cards/Squishy" unique_id=86279780]
+offset_left = -147.0
+offset_top = -39.0
+offset_right = 147.0
+offset_bottom = 39.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("SB_card")
+
+[node name="Label" type="Label" parent="Cards/Squishy" unique_id=1854554772]
+offset_left = -147.0
+offset_top = -39.0
+offset_right = 147.0
+offset_bottom = 39.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "Squishy"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InteractionFeedback" type="Node" parent="Cards/Squishy" unique_id=613898724]
+script = ExtResource("1_fdbk")
+
+[node name="FeedbackScaleEffect" type="Node" parent="Cards/Squishy/InteractionFeedback" unique_id=151682383]
+script = ExtResource("2_scal")
+hovered_scale = 1.12
+transition = 10
+
+[node name="AllTogether" type="Area2D" parent="Cards" unique_id=957259633]
+position = Vector2(318, 188)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cards/AllTogether" unique_id=1636367127]
+shape = SubResource("Rect_card")
+
+[node name="Panel" type="Panel" parent="Cards/AllTogether" unique_id=1994650262]
+offset_left = -147.0
+offset_top = -39.0
+offset_right = 147.0
+offset_bottom = 39.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("SB_card")
+
+[node name="Label" type="Label" parent="Cards/AllTogether" unique_id=1505214182]
+offset_left = -147.0
+offset_top = -39.0
+offset_right = 147.0
+offset_bottom = 39.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "Floating and punchy"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InteractionFeedback" type="Node" parent="Cards/AllTogether" unique_id=774900821]
+script = ExtResource("1_fdbk")
+
+[node name="FeedbackStickyEffect" type="Node" parent="Cards/AllTogether/InteractionFeedback" unique_id=312451819]
+script = ExtResource("9_stic")
+
+[node name="FeedbackScaleEffect" type="Node" parent="Cards/AllTogether/InteractionFeedback" unique_id=243537224]
+script = ExtResource("2_scal")
+transition = 10
+
+[node name="FeedbackShakeEffect" type="Node" parent="Cards/AllTogether/InteractionFeedback" unique_id=1407370137]
+script = ExtResource("3_shak")
+degrees = 3.0
+on_press = true
+transition = 1
+
+[node name="FeedbackWobbleEffect" type="Node" parent="Cards/AllTogether/InteractionFeedback" unique_id=1586762330]
+script = ExtResource("8_wobb")
+trigger = 1
+
+[node name="FeedbackZLevelEffect" type="Node" parent="Cards/AllTogether/InteractionFeedback" unique_id=482084080]
+script = ExtResource("5_zlvl")
+metadata/_custom_type_script = "uid://dde72tlibetmu"
