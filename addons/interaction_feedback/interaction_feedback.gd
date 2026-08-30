@@ -5,6 +5,8 @@ extends Node
 
 ## Composes stackable effects
 
+signal state_changed(hovered: bool, pressed: bool)
+
 ## What to do with the parent's own hover signals
 enum TouchMode {
 	## Hover on mouse, press-only on touch
@@ -40,6 +42,8 @@ static var _warned_missing_input_mode := false
 		_apply_pivot()
 
 @export var touch_mode: TouchMode = TouchMode.AUTO
+@export var hover_on_focus := true
+@export var respect_disabled := true
 
 var base_position: Vector2:
 	get:
@@ -60,6 +64,8 @@ var _target: CanvasItem
 var _is_control := false
 var _hovered := false
 var _pressed := false
+var _is_mouse_over := false
+var _is_focused := false
 var _press_index := -1
 var _composed := {}
 var _idle_frames := 0
@@ -179,6 +185,14 @@ func replay_state(effect: FeedbackEffect) -> void:
 	effect._replay_state(_hovered, _pressed)
 
 
+func is_hovered() -> bool:
+	return _hovered
+
+
+func is_pressed() -> bool:
+	return _pressed
+
+
 func set_hovered(value: bool) -> void:
 	if _hovered == value:
 		return
@@ -199,6 +213,8 @@ func set_pressed(value: bool) -> void:
 func reset() -> void:
 	_hovered = false
 	_pressed = false
+	_is_mouse_over = false
+	_is_focused = false
 	_press_index = -1
 
 	_sleep()
@@ -255,10 +271,11 @@ func _connect_target() -> void:
 		var button := _target as BaseButton
 
 		button.mouse_entered.connect(_handle_pointer_entered)
-		button.mouse_exited.connect(set_hovered.bind(false))
+		button.mouse_exited.connect(_handle_pointer_exited)
 		button.button_down.connect(set_pressed.bind(true))
 		button.button_up.connect(set_pressed.bind(false))
 
+		_connect_focus(button)
 		_catch_up_hover()
 
 		return
@@ -267,8 +284,19 @@ func _connect_target() -> void:
 		var control := _target as Control
 
 		control.mouse_entered.connect(_handle_pointer_entered)
-		control.mouse_exited.connect(set_hovered.bind(false))
+		control.mouse_exited.connect(_handle_pointer_exited)
 		control.gui_input.connect(_handle_gui_input)
+
+		_connect_focus(control)
+		_catch_up_hover()
+
+
+func _connect_focus(control: Control) -> void:
+	if not hover_on_focus:
+		return
+
+	control.focus_entered.connect(_handle_focus_entered)
+	control.focus_exited.connect(_handle_focus_exited)
 
 
 func _catch_up_hover() -> void:
@@ -280,12 +308,40 @@ func _catch_up_hover() -> void:
 	if button != null and button.is_hovered():
 		_handle_pointer_entered()
 
+	if hover_on_focus and _target is Control and (_target as Control).has_focus():
+		_is_focused = true
+		_update_hover()
+
 
 func _handle_pointer_entered() -> void:
-	if _is_hover_suppressed():
+	if _is_hover_suppressed() or _is_disabled():
 		return
 
-	set_hovered(true)
+	_is_mouse_over = true
+	_update_hover()
+
+
+func _handle_pointer_exited() -> void:
+	_is_mouse_over = false
+	_update_hover()
+
+
+func _handle_focus_entered() -> void:
+	_is_focused = true
+	_update_hover()
+
+
+func _handle_focus_exited() -> void:
+	_is_focused = false
+	_update_hover()
+
+
+func _update_hover() -> void:
+	set_hovered(_is_mouse_over or _is_focused)
+
+
+func _is_disabled() -> bool:
+	return respect_disabled and _target is BaseButton and (_target as BaseButton).disabled
 
 
 func _handle_gui_input(event: InputEvent) -> void:
@@ -311,6 +367,7 @@ func _broadcast_state_change() -> void:
 	for effect in _effects:
 		effect._apply_state(_hovered, _pressed)
 
+	state_changed.emit(_hovered, _pressed)
 	_wake()
 
 
