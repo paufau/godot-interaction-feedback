@@ -3,6 +3,9 @@
 class_name FeedbackOffsetOnceEffect
 extends FeedbackTriggerEffect
 
+enum Mode {DIRECT, RANDOM_DIRECTION}
+
+@export var mode := Mode.DIRECT
 @export var offset := Vector2(0, -8)
 @export var duration_sec := 0.16
 
@@ -28,9 +31,17 @@ func fire() -> void:
 	if tween == null:
 		return
 
+	var target := offset
+
+	if mode == Mode.RANDOM_DIRECTION:
+		target = Vector2(
+			offset.x * (-1.0 if randf() < 0.5 else 1.0),
+			offset.y * (-1.0 if randf() < 0.5 else 1.0)
+		)
+
 	var half_duration := duration_sec / 2.0
 
-	tween.tween_property(self, ^"_offset", offset, half_duration)
+	tween.tween_property(self, ^"_offset", target, half_duration)
 	tween.tween_property(self, ^"_offset", Vector2.ZERO, half_duration)
 
 

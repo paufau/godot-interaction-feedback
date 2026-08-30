@@ -3,6 +3,9 @@
 class_name FeedbackRotationOnceEffect
 extends FeedbackTriggerEffect
 
+enum Mode { DIRECT, RANDOM_DIRECTION }
+
+@export var mode := Mode.RANDOM_DIRECTION
 @export var degrees := 1.5
 @export var duration_sec := 0.16
 
@@ -28,11 +31,13 @@ func fire() -> void:
 	if tween == null:
 		return
 
-	var direction := -1.0 if randf() < 0.5 else 1.0
+	var direction_multiplier := 1.0
+	if mode == Mode.RANDOM_DIRECTION and randf() < 0.5:
+		direction_multiplier = -1.0
 
 	var half_duration := duration_sec / 2.0
 
-	tween.tween_property(self, ^"_rotation", deg_to_rad(degrees) * direction, half_duration)
+	tween.tween_property(self, ^"_rotation", deg_to_rad(degrees) * direction_multiplier, half_duration)
 	tween.tween_property(self, ^"_rotation", 0.0, half_duration)
 
 
