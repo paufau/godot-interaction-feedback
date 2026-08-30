@@ -108,6 +108,7 @@ script = ExtResource("fdbk")
 
 [node name="FeedbackScaleOnceEffect" type="Node" parent="VBox/Matrix/ScaleInstant/InteractionFeedback" unique_id=13]
 script = ExtResource("e_scaleonce")
+on_press = true
 transition = 10
 
 [node name="ScaleRepeated" type="Button" parent="VBox/Matrix" unique_id=14]
@@ -146,6 +147,7 @@ script = ExtResource("fdbk")
 
 [node name="FeedbackRotationOnceEffect" type="Node" parent="VBox/Matrix/RotationInstant/InteractionFeedback" unique_id=22]
 script = ExtResource("e_rotonce")
+on_press = true
 degrees = 3.0
 transition = 1
 
@@ -183,6 +185,7 @@ script = ExtResource("fdbk")
 
 [node name="FeedbackOffsetOnceEffect" type="Node" parent="VBox/Matrix/OffsetInstant/InteractionFeedback" unique_id=31]
 script = ExtResource("e_offonce")
+on_press = true
 transition = 1
 
 [node name="OffsetRepeated" type="Button" parent="VBox/Matrix" unique_id=32]
@@ -220,6 +223,7 @@ script = ExtResource("fdbk")
 
 [node name="FeedbackModulateOnceEffect" type="Node" parent="VBox/Matrix/ModulateInstant/InteractionFeedback" unique_id=40]
 script = ExtResource("e_modonce")
+on_press = true
 color = null
 transition = 1
 
@@ -368,6 +372,7 @@ transition = 10
 
 [node name="FeedbackRotationOnceEffect" type="Node" parent="VBox/Combo/AllTogether/InteractionFeedback" unique_id=74]
 script = ExtResource("e_rotonce")
+on_press = true
 degrees = 3.0
 transition = 1
 

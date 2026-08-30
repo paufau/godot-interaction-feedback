@@ -138,6 +138,7 @@ script = ExtResource("fdbk")
 
 [node name="FeedbackScaleOnceEffect" type="Node" parent="Cards/ScaleInstant/InteractionFeedback" unique_id=25]
 script = ExtResource("e_scaleonce")
+on_press = true
 transition = 10
 
 [node name="ScaleRepeated" type="Area2D" parent="Cards" unique_id=30]
@@ -236,6 +237,7 @@ script = ExtResource("fdbk")
 
 [node name="FeedbackRotationOnceEffect" type="Node" parent="Cards/RotationInstant/InteractionFeedback" unique_id=55]
 script = ExtResource("e_rotonce")
+on_press = true
 degrees = 3.0
 transition = 1
 
@@ -333,6 +335,7 @@ script = ExtResource("fdbk")
 
 [node name="FeedbackOffsetOnceEffect" type="Node" parent="Cards/OffsetInstant/InteractionFeedback" unique_id=85]
 script = ExtResource("e_offonce")
+on_press = true
 transition = 1
 
 [node name="OffsetRepeated" type="Area2D" parent="Cards" unique_id=90]
@@ -430,6 +433,7 @@ script = ExtResource("fdbk")
 
 [node name="FeedbackModulateOnceEffect" type="Node" parent="Cards/ModulateInstant/InteractionFeedback" unique_id=115]
 script = ExtResource("e_modonce")
+on_press = true
 transition = 1
 
 [node name="ModulateRepeated" type="Area2D" parent="Cards" unique_id=120]
@@ -752,6 +756,7 @@ transition = 10
 
 [node name="FeedbackRotationOnceEffect" type="Node" parent="Cards/AllTogether/InteractionFeedback" unique_id=217]
 script = ExtResource("e_rotonce")
+on_press = true
 degrees = 3.0
 transition = 1
 
