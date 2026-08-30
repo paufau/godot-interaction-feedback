@@ -18,6 +18,10 @@ func is_neutral(value: Variant) -> bool:
 	return is_zero_approx(value)
 
 
+func equals(a: Variant, b: Variant) -> bool:
+	return is_equal_approx(a, b)
+
+
 func capture_base(target: CanvasItem) -> Variant:
 	if target is Control:
 		return get_identity()
@@ -25,12 +29,15 @@ func capture_base(target: CanvasItem) -> Variant:
 	return (target as Node2D).rotation
 
 
-func write(target: CanvasItem, base: Variant, value: Variant) -> void:
+func write(target: CanvasItem, base: Variant, value: Variant) -> Variant:
 	if target is Control:
 		var control := target as Control
 		control.offset_transform_rotation = base + value * _get_squareness(control)
-	else:
-		(target as Node2D).rotation = combine(base, value)
+		return null
+
+	var composed := combine(base, value)
+	(target as Node2D).rotation = composed
+	return composed
 
 
 func _get_squareness(control: Control) -> float:

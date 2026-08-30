@@ -13,9 +13,13 @@ func is_neutral(_value: Variant) -> bool:
 	return false
 
 
+func equals(a: Variant, b: Variant) -> bool:
+	return a == b
+
+
 func capture_base(_target: CanvasItem) -> Variant:
 	return get_identity()
 
 
-func write(_target: CanvasItem, _base: Variant, _value: Variant) -> void:
-	pass
+func write(_target: CanvasItem, _base: Variant, _value: Variant) -> Variant:
+	return null

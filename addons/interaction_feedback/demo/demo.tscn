@@ -1,72 +1,51 @@
 [gd_scene format=3 uid="uid://cwd7dt6st8bpi"]
 
-[ext_resource type="Script" uid="uid://dgnfej0vnae1p" path="res://addons/interaction_feedback/interaction_feedback.gd" id="1_fdbk"]
-[ext_resource type="Script" uid="uid://bg75wl2v4x2yr" path="res://addons/interaction_feedback/effects/feedback_scale_effect.gd" id="2_scal"]
-[ext_resource type="Script" uid="uid://uowk6ctfd4wg" path="res://addons/interaction_feedback/effects/feedback_shake_effect.gd" id="3_shak"]
-[ext_resource type="Script" uid="uid://bctnnlgbvhxr5" path="res://addons/interaction_feedback/effects/feedback_offset_effect.gd" id="4_offs"]
-[ext_resource type="Script" uid="uid://dde72tlibetmu" path="res://addons/interaction_feedback/effects/feedback_z_level_effect.gd" id="5_zlvl"]
-[ext_resource type="Script" uid="uid://curkkv0sixcn5" path="res://addons/interaction_feedback/effects/feedback_pulse_effect.gd" id="6_puls"]
-[ext_resource type="Script" uid="uid://b8ig24xnb8pjf" path="res://addons/interaction_feedback/effects/feedback_modulate_effect.gd" id="7_modu"]
-[ext_resource type="Script" uid="uid://brbes7cg0qvms" path="res://addons/interaction_feedback/effects/feedback_wobble_effect.gd" id="8_wobb"]
-[ext_resource type="Script" uid="uid://bpainjbj3pqmt" path="res://addons/interaction_feedback/effects/feedback_sticky_effect.gd" id="9_stic"]
-[ext_resource type="Script" uid="uid://5q8vj1yhnntt" path="res://addons/interaction_feedback/effects/feedback_haptic_effect.gd" id="10_hapt"]
+[ext_resource type="Script" uid="uid://cig58e50ttrlr" path="res://addons/interaction_feedback/demo/demo.gd" id="1_demo"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_normal"]
-content_margin_left = 40.0
-content_margin_top = 20.0
-content_margin_right = 40.0
-content_margin_bottom = 20.0
-bg_color = Color(0.3137255, 0.2745098, 0.39215687, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
+[sub_resource type="StyleBoxFlat" id="SB_switch_normal"]
+content_margin_left = 18.0
+content_margin_top = 8.0
+content_margin_right = 18.0
+content_margin_bottom = 8.0
+bg_color = Color(0.898, 0.929, 0.973, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hover"]
-content_margin_left = 40.0
-content_margin_top = 20.0
-content_margin_right = 40.0
-content_margin_bottom = 20.0
-bg_color = Color(0.39607844, 0.36156863, 0.46509805, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
+[sub_resource type="StyleBoxFlat" id="SB_switch_pressed"]
+content_margin_left = 18.0
+content_margin_top = 8.0
+content_margin_right = 18.0
+content_margin_bottom = 8.0
+bg_color = Color(0.702, 0.796, 0.937, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pressed"]
-content_margin_left = 40.0
-content_margin_top = 20.0
-content_margin_right = 40.0
-content_margin_bottom = 20.0
-bg_color = Color(0.27607843, 0.24156862, 0.34509805, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
+[sub_resource type="StyleBoxFlat" id="SB_switch_hover"]
+content_margin_left = 18.0
+content_margin_top = 8.0
+content_margin_right = 18.0
+content_margin_bottom = 8.0
+bg_color = Color(0.784, 0.855, 0.961, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
-[sub_resource type="Theme" id="Theme_demo"]
-Button/colors/font_color = Color(0.9764706, 0.9764706, 0.972549, 1)
-Button/colors/font_focus_color = Color(0.9764706, 0.9764706, 0.972549, 1)
-Button/colors/font_hover_color = Color(0.9764706, 0.9764706, 0.972549, 1)
-Button/colors/font_pressed_color = Color(0.9764706, 0.9764706, 0.972549, 1)
-Button/font_sizes/font_size = 24
-Button/styles/disabled = SubResource("StyleBoxFlat_normal")
-Button/styles/focus = SubResource("StyleBoxFlat_hover")
-Button/styles/hover = SubResource("StyleBoxFlat_hover")
-Button/styles/normal = SubResource("StyleBoxFlat_normal")
-Button/styles/pressed = SubResource("StyleBoxFlat_pressed")
-Label/colors/font_color = Color(0.3137255, 0.2745098, 0.39215687, 1)
-
-[node name="Demo" type="Control" unique_id=1091137708]
+[node name="Demo" type="Control" unique_id=478902330]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_demo")
+mouse_filter = 2
+script = ExtResource("1_demo")
 
-[node name="Background" type="ColorRect" parent="." unique_id=1167335030]
+[node name="Background" type="ColorRect" parent="." unique_id=600074406]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -74,251 +53,46 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0.9764706, 0.9764706, 0.972549, 1)
 
-[node name="Center" type="CenterContainer" parent="." unique_id=1037783834]
+[node name="Stage" type="Control" parent="." unique_id=302932750]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
-[node name="Column" type="VBoxContainer" parent="Center" unique_id=529468028]
-layout_mode = 2
-theme_override_constants/separation = 16
+[node name="Header" type="VBoxContainer" parent="." unique_id=1571280349]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -198.5
+offset_top = 120.0
+offset_right = 198.5
+offset_bottom = 227.0
+grow_horizontal = 2
+theme_override_constants/separation = 10
 
-[node name="Title" type="Label" parent="Center/Column" unique_id=72598212]
+[node name="Title" type="Label" parent="Header" unique_id=1856682493]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.16, 0.21, 0.32, 1)
 theme_override_font_sizes/font_size = 40
 text = "InteractionFeedback"
 horizontal_alignment = 1
 
-[node name="Hint" type="Label" parent="Center/Column" unique_id=301335390]
+[node name="Switch" type="CheckButton" parent="Header" unique_id=563515089]
 layout_mode = 2
-theme_override_font_sizes/font_size = 20
-text = "Hover and press. Effects stack on one node."
-horizontal_alignment = 1
-
-[node name="Grid" type="GridContainer" parent="Center/Column" unique_id=458720743]
-layout_mode = 2
-theme_override_constants/h_separation = 24
-theme_override_constants/v_separation = 16
-columns = 3
-
-[node name="Scale" type="Button" parent="Center/Column/Grid" unique_id=1018023531]
-custom_minimum_size = Vector2(294, 78)
-layout_mode = 2
-text = "Scale"
-
-[node name="InteractionFeedback" type="Node" parent="Center/Column/Grid/Scale" unique_id=1820466580]
-script = ExtResource("1_fdbk")
-
-[node name="FeedbackScaleEffect" type="Node" parent="Center/Column/Grid/Scale/InteractionFeedback" unique_id=1698802174]
-script = ExtResource("2_scal")
-transition = 10
-
-[node name="Modulation" type="Button" parent="Center/Column/Grid" unique_id=1379195817]
-custom_minimum_size = Vector2(294, 78)
-layout_mode = 2
-text = "Modulation
-"
-
-[node name="InteractionFeedback" type="Node" parent="Center/Column/Grid/Modulation" unique_id=925424071]
-script = ExtResource("1_fdbk")
-
-[node name="FeedbackModulateEffect" type="Node" parent="Center/Column/Grid/Modulation/InteractionFeedback" unique_id=2039175590]
-script = ExtResource("7_modu")
-hovered_modulate = Color(0, 1.1001469, 1.1001469, 1)
-pressed_modulate = Color(0.9019608, 0, 0.22352941, 1)
-
-[node name="Offset" type="Button" parent="Center/Column/Grid" unique_id=1672618543]
-custom_minimum_size = Vector2(294, 78)
-layout_mode = 2
-text = "Offset"
-
-[node name="InteractionFeedback" type="Node" parent="Center/Column/Grid/Offset" unique_id=1649054841]
-script = ExtResource("1_fdbk")
-
-[node name="FeedbackOffsetEffect" type="Node" parent="Center/Column/Grid/Offset/InteractionFeedback" unique_id=1290902063]
-script = ExtResource("4_offs")
-hovered_offset = Vector2(0, -6)
-
-[node name="ShakeOnHover" type="Button" parent="Center/Column/Grid" unique_id=1002076480]
-custom_minimum_size = Vector2(294, 78)
-layout_mode = 2
-text = "Shake on hover
-"
-
-[node name="InteractionFeedback" type="Node" parent="Center/Column/Grid/ShakeOnHover" unique_id=1439766612]
-script = ExtResource("1_fdbk")
-
-[node name="FeedbackShakeEffect" type="Node" parent="Center/Column/Grid/ShakeOnHover/InteractionFeedback" unique_id=1258745898]
-script = ExtResource("3_shak")
-transition = 1
-
-[node name="ShakeOnPress" type="Button" parent="Center/Column/Grid" unique_id=694906502]
-custom_minimum_size = Vector2(294, 78)
-layout_mode = 2
-text = "Shake on press"
-
-[node name="InteractionFeedback" type="Node" parent="Center/Column/Grid/ShakeOnPress" unique_id=825266698]
-script = ExtResource("1_fdbk")
-
-[node name="FeedbackShakeEffect" type="Node" parent="Center/Column/Grid/ShakeOnPress/InteractionFeedback" unique_id=1940019017]
-script = ExtResource("3_shak")
-degrees = 3.0
-on_hover = false
-on_press = true
-transition = 1
-
-[node name="Pulse" type="Button" parent="Center/Column/Grid" unique_id=2102081614]
-custom_minimum_size = Vector2(294, 78)
-layout_mode = 2
-text = "Pulse"
-
-[node name="InteractionFeedback" type="Node" parent="Center/Column/Grid/Pulse" unique_id=1936636007]
-script = ExtResource("1_fdbk")
-
-[node name="FeedbackPulseEffect" type="Node" parent="Center/Column/Grid/Pulse/InteractionFeedback" unique_id=1317962044]
-script = ExtResource("6_puls")
-amplitude = 0.03
-trigger = 1
-
-[node name="Wobble" type="Button" parent="Center/Column/Grid" unique_id=580645847]
-custom_minimum_size = Vector2(294, 78)
-layout_mode = 2
-text = "Wobble"
-
-[node name="InteractionFeedback" type="Node" parent="Center/Column/Grid/Wobble" unique_id=1430389229]
-script = ExtResource("1_fdbk")
-
-[node name="FeedbackWobbleEffect" type="Node" parent="Center/Column/Grid/Wobble/InteractionFeedback" unique_id=830492955]
-script = ExtResource("8_wobb")
-trigger = 1
-
-[node name="Sticky" type="Button" parent="Center/Column/Grid" unique_id=2092780892]
-custom_minimum_size = Vector2(294, 78)
-layout_mode = 2
-text = "Sticky"
-
-[node name="InteractionFeedback" type="Node" parent="Center/Column/Grid/Sticky" unique_id=2083743724]
-script = ExtResource("1_fdbk")
-
-[node name="FeedbackStickyEffect" type="Node" parent="Center/Column/Grid/Sticky/InteractionFeedback" unique_id=259646871]
-script = ExtResource("9_stic")
-
-[node name="Haptic" type="Button" parent="Center/Column/Grid" unique_id=1611879938]
-custom_minimum_size = Vector2(294, 78)
-layout_mode = 2
-text = "Haptic (touch)"
-
-[node name="InteractionFeedback" type="Node" parent="Center/Column/Grid/Haptic" unique_id=854730381]
-script = ExtResource("1_fdbk")
-
-[node name="FeedbackHapticEffect" type="Node" parent="Center/Column/Grid/Haptic/InteractionFeedback" unique_id=1421116331]
-script = ExtResource("10_hapt")
-on_hover = false
-on_press = true
-
-[node name="OffsetAndRaise" type="Button" parent="Center/Column/Grid" unique_id=1484070862]
-custom_minimum_size = Vector2(294, 78)
-layout_mode = 2
-text = "Offset + Scale + Z"
-
-[node name="InteractionFeedback" type="Node" parent="Center/Column/Grid/OffsetAndRaise" unique_id=800359309]
-script = ExtResource("1_fdbk")
-
-[node name="FeedbackOffsetEffect" type="Node" parent="Center/Column/Grid/OffsetAndRaise/InteractionFeedback" unique_id=372529781]
-script = ExtResource("4_offs")
-hovered_offset = Vector2(0, -6)
-
-[node name="FeedbackScaleEffect" type="Node" parent="Center/Column/Grid/OffsetAndRaise/InteractionFeedback" unique_id=1343905072]
-script = ExtResource("2_scal")
-hovered_scale = 1.12
-transition = 10
-
-[node name="FeedbackZLevelEffect" type="Node" parent="Center/Column/Grid/OffsetAndRaise/InteractionFeedback" unique_id=184275274]
-script = ExtResource("5_zlvl")
-
-[node name="Elastic" type="Button" parent="Center/Column/Grid" unique_id=1937484962]
-custom_minimum_size = Vector2(294, 78)
-layout_mode = 2
-text = "Elastic"
-
-[node name="InteractionFeedback" type="Node" parent="Center/Column/Grid/Elastic" unique_id=1879829297]
-script = ExtResource("1_fdbk")
-
-[node name="FeedbackScaleEffect" type="Node" parent="Center/Column/Grid/Elastic/InteractionFeedback" unique_id=1201809793]
-script = ExtResource("2_scal")
-hovered_scale = 1.12
-duration_sec = 0.5
-y_lag = 1.0
-transition = 6
-
-[node name="Sink" type="Button" parent="Center/Column/Grid" unique_id=1586430053]
-custom_minimum_size = Vector2(294, 78)
-layout_mode = 2
-text = "Sink"
-
-[node name="InteractionFeedback" type="Node" parent="Center/Column/Grid/Sink" unique_id=1031455128]
-script = ExtResource("1_fdbk")
-
-[node name="FeedbackOffsetEffect" type="Node" parent="Center/Column/Grid/Sink/InteractionFeedback" unique_id=766773134]
-script = ExtResource("4_offs")
-hovered_offset = Vector2(0, 0)
-pressed_offset = Vector2(0, 4)
-
-[node name="Heartbeat" type="Button" parent="Center/Column/Grid" unique_id=823656044]
-custom_minimum_size = Vector2(294, 78)
-layout_mode = 2
-text = "Heartbeat"
-
-[node name="InteractionFeedback" type="Node" parent="Center/Column/Grid/Heartbeat" unique_id=1356532902]
-script = ExtResource("1_fdbk")
-
-[node name="FeedbackPulseEffect" type="Node" parent="Center/Column/Grid/Heartbeat/InteractionFeedback" unique_id=321703595]
-script = ExtResource("6_puls")
-amplitude = 0.06
-trigger = 1
-period_sec = 0.35
-
-[node name="Squishy" type="Button" parent="Center/Column/Grid" unique_id=1220409013]
-custom_minimum_size = Vector2(294, 78)
-layout_mode = 2
-text = "Squishy"
-
-[node name="InteractionFeedback" type="Node" parent="Center/Column/Grid/Squishy" unique_id=1099885685]
-script = ExtResource("1_fdbk")
-pivot_ratio = Vector2(0.5, 1)
-
-[node name="FeedbackScaleEffect" type="Node" parent="Center/Column/Grid/Squishy/InteractionFeedback" unique_id=199153062]
-script = ExtResource("2_scal")
-hovered_scale = 1.12
-transition = 10
-
-[node name="AllTogether" type="Button" parent="Center/Column/Grid" unique_id=56333290]
-custom_minimum_size = Vector2(294, 78)
-layout_mode = 2
-text = "Floating and punchy"
-
-[node name="InteractionFeedback" type="Node" parent="Center/Column/Grid/AllTogether" unique_id=1718815329]
-script = ExtResource("1_fdbk")
-
-[node name="FeedbackStickyEffect" type="Node" parent="Center/Column/Grid/AllTogether/InteractionFeedback" unique_id=505506066]
-script = ExtResource("9_stic")
-
-[node name="FeedbackScaleEffect" type="Node" parent="Center/Column/Grid/AllTogether/InteractionFeedback" unique_id=222031359]
-script = ExtResource("2_scal")
-transition = 10
-
-[node name="FeedbackShakeEffect" type="Node" parent="Center/Column/Grid/AllTogether/InteractionFeedback" unique_id=1114354066]
-script = ExtResource("3_shak")
-degrees = 3.0
-on_press = true
-transition = 1
-
-[node name="FeedbackWobbleEffect" type="Node" parent="Center/Column/Grid/AllTogether/InteractionFeedback" unique_id=441438381]
-script = ExtResource("8_wobb")
-trigger = 1
-metadata/_custom_type_script = "uid://brbes7cg0qvms"
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.2, 0.26, 0.36, 1)
+theme_override_colors/font_focus_color = Color(0.2, 0.26, 0.36, 1)
+theme_override_colors/font_pressed_color = Color(0.2, 0.26, 0.36, 1)
+theme_override_colors/font_hover_color = Color(0.2, 0.26, 0.36, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("SB_switch_normal")
+theme_override_styles/pressed = SubResource("SB_switch_pressed")
+theme_override_styles/hover = SubResource("SB_switch_hover")
+theme_override_styles/hover_pressed = SubResource("SB_switch_hover")
+theme_override_styles/focus = SubResource("SB_switch_normal")
+text = "Try on Node2D"

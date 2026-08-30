@@ -20,8 +20,10 @@ func capture_base(target: CanvasItem) -> Variant:
 	return target.z_index
 
 
-func write(target: CanvasItem, base: Variant, value: Variant) -> void:
+func write(target: CanvasItem, base: Variant, value: Variant) -> Variant:
 	var composed: int = combine(base, value)
-	target.z_index = clampi(
+	var clamped := clampi(
 		composed, RenderingServer.CANVAS_ITEM_Z_MIN, RenderingServer.CANVAS_ITEM_Z_MAX
 	)
+	target.z_index = clamped
+	return clamped

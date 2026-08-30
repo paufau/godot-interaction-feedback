@@ -16,9 +16,15 @@ func is_neutral(value: Variant) -> bool:
 	return value.is_equal_approx(Color.WHITE)
 
 
+func equals(a: Variant, b: Variant) -> bool:
+	return a.is_equal_approx(b)
+
+
 func capture_base(target: CanvasItem) -> Variant:
 	return target.modulate
 
 
-func write(target: CanvasItem, base: Variant, value: Variant) -> void:
-	target.modulate = combine(base, value)
+func write(target: CanvasItem, base: Variant, value: Variant) -> Variant:
+	var composed := combine(base, value)
+	target.modulate = composed
+	return composed
