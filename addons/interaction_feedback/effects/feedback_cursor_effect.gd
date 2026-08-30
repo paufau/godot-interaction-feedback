@@ -1,7 +1,7 @@
 @tool
 @icon("uid://2gs1mtgx55c3")
 class_name FeedbackCursorEffect
-extends FeedbackEffect
+extends FeedbackTriggerEffect
 
 @export var shape: Input.CursorShape = Input.CURSOR_POINTING_HAND
 
@@ -10,16 +10,22 @@ var _original: int = Input.CURSOR_ARROW
 var _active := false
 
 
-func _apply_state(hovered: bool, _pressed: bool) -> void:
-	if hovered == _active:
+func _apply_state(hovered: bool, pressed: bool) -> void:
+	var should_apply := (hovered and on_hover) or (pressed and on_press)
+
+	if should_apply == _active:
 		return
 
-	_active = hovered
+	_active = should_apply
 
-	if hovered:
+	if should_apply:
 		_apply()
 	else:
 		_restore()
+
+
+func _replay_state(hovered: bool, pressed: bool) -> void:
+	_apply_state(hovered, pressed)
 
 
 func uses_tween() -> bool:
