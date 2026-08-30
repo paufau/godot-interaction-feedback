@@ -71,8 +71,8 @@ feedback.add_effect(FeedbackShakeEffect.new())
 Effects naming convention:
 
 - `Feedback<Property>Effect` - applied all time during hover/press
-- `Feedback<Property>OnceEffect` — fires once per state update
-- `Feedback<Property>OscillatedEffect` — loops continuously
+- `Feedback<Property>OnceEffect` - fires once per state update
+- `Feedback<Property>OscillatedEffect` - loops continuously
 
 | Effect                             | What it does                                | Control | Node2D |
 | ---------------------------------- | ------------------------------------------- | :-----: | :----: |

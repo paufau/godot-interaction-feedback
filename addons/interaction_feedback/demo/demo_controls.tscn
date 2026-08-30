@@ -283,7 +283,13 @@ script = ExtResource("fdbk")
 
 [node name="FeedbackCursorEffect" type="Node" parent="VBox/Combo/Cursor/InteractionFeedback" unique_id=55]
 script = ExtResource("e_curs")
-shape = 3
+shape = 2
+
+[node name="FeedbackCursorEffectPressed" type="Node" parent="VBox/Combo/Cursor/InteractionFeedback"]
+script = ExtResource("e_curs")
+shape = 6
+on_hover = false
+on_press = true
 
 [node name="ZIndex" type="Button" parent="VBox/Combo" unique_id=56]
 custom_minimum_size = Vector2(260, 64)
