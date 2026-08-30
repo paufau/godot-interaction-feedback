@@ -15,6 +15,7 @@ enum Trigger {
 @export_range(0.0, 5.0, 0.05, "or_greater", "suffix:s") var fade_sec := 0.25
 
 var _phase := 0.0
+var _sin_phase := 0.0
 var _amount := 0.0
 var _target_amount := 0.0
 var _hovered := false
@@ -30,12 +31,18 @@ func _tick(delta: float) -> void:
 	if period_sec > 0.0:
 		_phase = fmod(_phase + TAU * delta / period_sec, TAU)
 
+	_sin_phase = sin(_phase)
+
 	var step := 1.0 if fade_sec <= 0.0 else delta / fade_sec
 	_amount = move_toward(_amount, _target_amount, step)
 
 
 func wave() -> float:
-	return sin(_phase) * _amount
+	return _sin_phase * _amount
+
+
+func wave_between(lo: float, hi: float) -> float:
+	return ((lo + hi) * 0.5 + (hi - lo) * 0.5 * _sin_phase) * _amount
 
 
 func _apply_state(hovered: bool, pressed: bool) -> void:
@@ -56,12 +63,12 @@ func reset() -> void:
 	super()
 
 	_phase = 0.0
+	_sin_phase = 0.0
 	_amount = 0.0
 	_target_amount = 0.0
 	_hovered = false
 	_pressed = false
 
-	# The resting state of an ALWAYS sway is swaying; fade back in
 	if not Engine.is_editor_hint():
 		_update_target_amount()
 

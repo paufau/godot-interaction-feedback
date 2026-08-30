@@ -2,6 +2,7 @@
 @icon("uid://do1kt1v6tvhmp")
 class_name FeedbackWobbleEffect
 extends FeedbackOscillatorEffect
+## @deprecated: Use [FeedbackRotationOscillatedEffect] instead
 
 @export var degrees := 2.0
 

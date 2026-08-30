@@ -2,6 +2,7 @@
 @icon("uid://dtf032vo5n4ob")
 class_name FeedbackPulseEffect
 extends FeedbackOscillatorEffect
+## @deprecated: Use [FeedbackScaleOscillatedEffect] instead
 
 @export var amplitude := 0.04
 

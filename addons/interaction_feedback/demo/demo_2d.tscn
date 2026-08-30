@@ -1,546 +1,761 @@
 [gd_scene format=3 uid="uid://bswv7sc1reh0r"]
 
-[ext_resource type="Script" uid="uid://dgnfej0vnae1p" path="res://addons/interaction_feedback/interaction_feedback.gd" id="1_fdbk"]
-[ext_resource type="Script" uid="uid://bg75wl2v4x2yr" path="res://addons/interaction_feedback/effects/feedback_scale_effect.gd" id="2_scal"]
-[ext_resource type="Script" uid="uid://uowk6ctfd4wg" path="res://addons/interaction_feedback/effects/feedback_shake_effect.gd" id="3_shak"]
-[ext_resource type="Script" uid="uid://bctnnlgbvhxr5" path="res://addons/interaction_feedback/effects/feedback_offset_effect.gd" id="4_offs"]
-[ext_resource type="Script" uid="uid://dde72tlibetmu" path="res://addons/interaction_feedback/effects/feedback_z_level_effect.gd" id="5_zlvl"]
-[ext_resource type="Script" uid="uid://curkkv0sixcn5" path="res://addons/interaction_feedback/effects/feedback_pulse_effect.gd" id="6_puls"]
-[ext_resource type="Script" uid="uid://b8ig24xnb8pjf" path="res://addons/interaction_feedback/effects/feedback_modulate_effect.gd" id="7_modu"]
-[ext_resource type="Script" uid="uid://brbes7cg0qvms" path="res://addons/interaction_feedback/effects/feedback_wobble_effect.gd" id="8_wobb"]
-[ext_resource type="Script" uid="uid://bpainjbj3pqmt" path="res://addons/interaction_feedback/effects/feedback_sticky_effect.gd" id="9_stic"]
-[ext_resource type="Script" uid="uid://5q8vj1yhnntt" path="res://addons/interaction_feedback/effects/feedback_haptic_effect.gd" id="10_hapt"]
+[ext_resource type="Script" uid="uid://cmpkdbb4s36b" path="res://addons/interaction_feedback/effects/feedback_cursor_effect.gd" id="e_curs"]
+[ext_resource type="Script" uid="uid://5q8vj1yhnntt" path="res://addons/interaction_feedback/effects/feedback_haptic_effect.gd" id="e_hapt"]
+[ext_resource type="Script" uid="uid://b8ig24xnb8pjf" path="res://addons/interaction_feedback/effects/feedback_modulate_effect.gd" id="e_mod"]
+[ext_resource type="Script" uid="uid://cw31nl0ldqdv0" path="res://addons/interaction_feedback/effects/feedback_modulate_once_effect.gd" id="e_modonce"]
+[ext_resource type="Script" uid="uid://cj32j5kmb86on" path="res://addons/interaction_feedback/effects/feedback_modulate_oscillated_effect.gd" id="e_modosc"]
+[ext_resource type="Script" uid="uid://bctnnlgbvhxr5" path="res://addons/interaction_feedback/effects/feedback_offset_effect.gd" id="e_off"]
+[ext_resource type="Script" uid="uid://di38rp051mra0" path="res://addons/interaction_feedback/effects/feedback_offset_once_effect.gd" id="e_offonce"]
+[ext_resource type="Script" uid="uid://jsh801nh4k2u" path="res://addons/interaction_feedback/effects/feedback_offset_oscillated_effect.gd" id="e_offosc"]
+[ext_resource type="Script" uid="uid://c6bu3qs0024xb" path="res://addons/interaction_feedback/effects/feedback_rotation_effect.gd" id="e_rot"]
+[ext_resource type="Script" uid="uid://ksdfn1ifejq6" path="res://addons/interaction_feedback/effects/feedback_rotation_once_effect.gd" id="e_rotonce"]
+[ext_resource type="Script" uid="uid://cjxao02a5vj2h" path="res://addons/interaction_feedback/effects/feedback_rotation_oscillated_effect.gd" id="e_rotosc"]
+[ext_resource type="Script" uid="uid://bg75wl2v4x2yr" path="res://addons/interaction_feedback/effects/feedback_scale_effect.gd" id="e_scale"]
+[ext_resource type="Script" uid="uid://dlykytyt8b07g" path="res://addons/interaction_feedback/effects/feedback_scale_once_effect.gd" id="e_scaleonce"]
+[ext_resource type="Script" uid="uid://b0jgfbm5omvgb" path="res://addons/interaction_feedback/effects/feedback_scale_oscillated_effect.gd" id="e_scaleosc"]
+[ext_resource type="Script" uid="uid://bpainjbj3pqmt" path="res://addons/interaction_feedback/effects/feedback_sticky_effect.gd" id="e_stic"]
+[ext_resource type="Script" uid="uid://dde72tlibetmu" path="res://addons/interaction_feedback/effects/feedback_z_level_effect.gd" id="e_zlvl"]
+[ext_resource type="Script" uid="uid://dgnfej0vnae1p" path="res://addons/interaction_feedback/interaction_feedback.gd" id="fdbk"]
 
 [sub_resource type="RectangleShape2D" id="Rect_card"]
-size = Vector2(294, 78)
+size = Vector2(260, 64)
 
 [sub_resource type="StyleBoxFlat" id="SB_card"]
 bg_color = Color(0.408, 0.635, 0.933, 1)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
 shadow_color = Color(0.2, 0.35, 0.55, 0.12)
-shadow_size = 12
+shadow_size = 10
 shadow_offset = Vector2(0, 4)
 
-[node name="Demo2D" type="Node2D" unique_id=2012555777]
+[node name="Demo2D" type="Node2D" unique_id=1]
 
-[node name="Cards" type="Node2D" parent="." unique_id=1794188645]
-position = Vector2(960, 540)
+[node name="Cards" type="Node2D" parent="." unique_id=2]
+position = Vector2(936, 40)
 
-[node name="Scale" type="Area2D" parent="Cards" unique_id=293764761]
-position = Vector2(-318, -188)
+[node name="Title" type="Label" parent="Cards" unique_id=3]
+offset_left = -160.0
+offset_top = -15.0
+offset_right = 160.0
+offset_bottom = 15.0
+theme_override_colors/font_color = Color(0.16, 0.21, 0.32, 1)
+theme_override_font_sizes/font_size = 22
+text = "Property × Behavior"
+horizontal_alignment = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Cards/Scale" unique_id=219731612]
+[node name="HdrConstant" type="Label" parent="Cards" unique_id=4]
+offset_left = -430.0
+offset_top = 30.0
+offset_right = -170.0
+offset_bottom = 62.0
+theme_override_colors/font_color = Color(0.16, 0.21, 0.32, 1)
+theme_override_font_sizes/font_size = 16
+text = "Constant"
+horizontal_alignment = 1
+
+[node name="HdrInstant" type="Label" parent="Cards" unique_id=5]
+offset_left = -130.0
+offset_top = 30.0
+offset_right = 130.0
+offset_bottom = 62.0
+theme_override_colors/font_color = Color(0.16, 0.21, 0.32, 1)
+theme_override_font_sizes/font_size = 16
+text = "Instant"
+horizontal_alignment = 1
+
+[node name="HdrRepeated" type="Label" parent="Cards" unique_id=6]
+offset_left = 170.0
+offset_top = 30.0
+offset_right = 430.0
+offset_bottom = 62.0
+theme_override_colors/font_color = Color(0.16, 0.21, 0.32, 1)
+theme_override_font_sizes/font_size = 16
+text = "Repeated"
+horizontal_alignment = 1
+
+[node name="ScaleConstant" type="Area2D" parent="Cards" unique_id=10]
+position = Vector2(-300, 105)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cards/ScaleConstant" unique_id=11]
 shape = SubResource("Rect_card")
 
-[node name="Panel" type="Panel" parent="Cards/Scale" unique_id=108923829]
-offset_left = -147.0
-offset_top = -39.0
-offset_right = 147.0
-offset_bottom = 39.0
+[node name="Panel" type="Panel" parent="Cards/ScaleConstant" unique_id=12]
+offset_left = -130.0
+offset_top = -32.0
+offset_right = 130.0
+offset_bottom = 32.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("SB_card")
 
-[node name="Label" type="Label" parent="Cards/Scale" unique_id=1822480427]
-offset_left = -147.0
-offset_top = -39.0
-offset_right = 147.0
-offset_bottom = 39.0
+[node name="Label" type="Label" parent="Cards/ScaleConstant" unique_id=13]
+offset_left = -130.0
+offset_top = -32.0
+offset_right = 130.0
+offset_bottom = 32.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 20
 text = "Scale"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="InteractionFeedback" type="Node" parent="Cards/Scale" unique_id=312309413]
-script = ExtResource("1_fdbk")
+[node name="InteractionFeedback" type="Node" parent="Cards/ScaleConstant" unique_id=14]
+script = ExtResource("fdbk")
 
-[node name="FeedbackScaleEffect" type="Node" parent="Cards/Scale/InteractionFeedback" unique_id=622742557]
-script = ExtResource("2_scal")
+[node name="FeedbackScaleEffect" type="Node" parent="Cards/ScaleConstant/InteractionFeedback" unique_id=15]
+script = ExtResource("e_scale")
 transition = 10
 
-[node name="Modulation" type="Area2D" parent="Cards" unique_id=386635833]
-position = Vector2(0, -188)
+[node name="ScaleInstant" type="Area2D" parent="Cards" unique_id=20]
+position = Vector2(0, 105)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Cards/Modulation" unique_id=345453652]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cards/ScaleInstant" unique_id=21]
 shape = SubResource("Rect_card")
 
-[node name="Panel" type="Panel" parent="Cards/Modulation" unique_id=11524764]
-offset_left = -147.0
-offset_top = -39.0
-offset_right = 147.0
-offset_bottom = 39.0
+[node name="Panel" type="Panel" parent="Cards/ScaleInstant" unique_id=22]
+offset_left = -130.0
+offset_top = -32.0
+offset_right = 130.0
+offset_bottom = 32.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("SB_card")
 
-[node name="Label" type="Label" parent="Cards/Modulation" unique_id=996932011]
-offset_left = -147.0
-offset_top = -39.0
-offset_right = 147.0
-offset_bottom = 39.0
+[node name="Label" type="Label" parent="Cards/ScaleInstant" unique_id=23]
+offset_left = -130.0
+offset_top = -32.0
+offset_right = 130.0
+offset_bottom = 32.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 24
-text = "Modulation"
+theme_override_font_sizes/font_size = 20
+text = "Scale"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="InteractionFeedback" type="Node" parent="Cards/Modulation" unique_id=605368579]
-script = ExtResource("1_fdbk")
+[node name="InteractionFeedback" type="Node" parent="Cards/ScaleInstant" unique_id=24]
+script = ExtResource("fdbk")
 
-[node name="FeedbackModulateEffect" type="Node" parent="Cards/Modulation/InteractionFeedback" unique_id=2071116848]
-script = ExtResource("7_modu")
-hovered_modulate = Color(0, 1.1001469, 1.1001469, 1)
-pressed_modulate = Color(0.9019608, 0, 0.22352941, 1)
+[node name="FeedbackScaleOnceEffect" type="Node" parent="Cards/ScaleInstant/InteractionFeedback" unique_id=25]
+script = ExtResource("e_scaleonce")
+transition = 10
 
-[node name="Offset" type="Area2D" parent="Cards" unique_id=1330497632]
-position = Vector2(318, -188)
+[node name="ScaleRepeated" type="Area2D" parent="Cards" unique_id=30]
+position = Vector2(300, 105)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Cards/Offset" unique_id=831638917]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cards/ScaleRepeated" unique_id=31]
 shape = SubResource("Rect_card")
 
-[node name="Panel" type="Panel" parent="Cards/Offset" unique_id=1059767194]
-offset_left = -147.0
-offset_top = -39.0
-offset_right = 147.0
-offset_bottom = 39.0
+[node name="Panel" type="Panel" parent="Cards/ScaleRepeated" unique_id=32]
+offset_left = -130.0
+offset_top = -32.0
+offset_right = 130.0
+offset_bottom = 32.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("SB_card")
 
-[node name="Label" type="Label" parent="Cards/Offset" unique_id=655339504]
-offset_left = -147.0
-offset_top = -39.0
-offset_right = 147.0
-offset_bottom = 39.0
+[node name="Label" type="Label" parent="Cards/ScaleRepeated" unique_id=33]
+offset_left = -130.0
+offset_top = -32.0
+offset_right = 130.0
+offset_bottom = 32.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 20
+text = "Scale"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InteractionFeedback" type="Node" parent="Cards/ScaleRepeated" unique_id=34]
+script = ExtResource("fdbk")
+
+[node name="FeedbackScaleOscillatedEffect" type="Node" parent="Cards/ScaleRepeated/InteractionFeedback" unique_id=35]
+script = ExtResource("e_scaleosc")
+scale = 1.06
+trigger = 1
+
+[node name="RotationConstant" type="Area2D" parent="Cards" unique_id=40]
+position = Vector2(-300, 185)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cards/RotationConstant" unique_id=41]
+shape = SubResource("Rect_card")
+
+[node name="Panel" type="Panel" parent="Cards/RotationConstant" unique_id=42]
+offset_left = -130.0
+offset_top = -32.0
+offset_right = 130.0
+offset_bottom = 32.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("SB_card")
+
+[node name="Label" type="Label" parent="Cards/RotationConstant" unique_id=43]
+offset_left = -130.0
+offset_top = -32.0
+offset_right = 130.0
+offset_bottom = 32.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "Rotation"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InteractionFeedback" type="Node" parent="Cards/RotationConstant" unique_id=44]
+script = ExtResource("fdbk")
+
+[node name="FeedbackRotationEffect" type="Node" parent="Cards/RotationConstant/InteractionFeedback" unique_id=45]
+script = ExtResource("e_rot")
+hovered_degrees = 5.0
+pressed_degrees = -5.0
+
+[node name="RotationInstant" type="Area2D" parent="Cards" unique_id=50]
+position = Vector2(0, 185)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cards/RotationInstant" unique_id=51]
+shape = SubResource("Rect_card")
+
+[node name="Panel" type="Panel" parent="Cards/RotationInstant" unique_id=52]
+offset_left = -130.0
+offset_top = -32.0
+offset_right = 130.0
+offset_bottom = 32.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("SB_card")
+
+[node name="Label" type="Label" parent="Cards/RotationInstant" unique_id=53]
+offset_left = -130.0
+offset_top = -32.0
+offset_right = 130.0
+offset_bottom = 32.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "Rotation"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InteractionFeedback" type="Node" parent="Cards/RotationInstant" unique_id=54]
+script = ExtResource("fdbk")
+
+[node name="FeedbackRotationOnceEffect" type="Node" parent="Cards/RotationInstant/InteractionFeedback" unique_id=55]
+script = ExtResource("e_rotonce")
+degrees = 3.0
+transition = 1
+
+[node name="RotationRepeated" type="Area2D" parent="Cards" unique_id=60]
+position = Vector2(300, 185)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cards/RotationRepeated" unique_id=61]
+shape = SubResource("Rect_card")
+
+[node name="Panel" type="Panel" parent="Cards/RotationRepeated" unique_id=62]
+offset_left = -130.0
+offset_top = -32.0
+offset_right = 130.0
+offset_bottom = 32.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("SB_card")
+
+[node name="Label" type="Label" parent="Cards/RotationRepeated" unique_id=63]
+offset_left = -130.0
+offset_top = -32.0
+offset_right = 130.0
+offset_bottom = 32.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "Rotation"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InteractionFeedback" type="Node" parent="Cards/RotationRepeated" unique_id=64]
+script = ExtResource("fdbk")
+
+[node name="FeedbackRotationOscillatedEffect" type="Node" parent="Cards/RotationRepeated/InteractionFeedback" unique_id=65]
+script = ExtResource("e_rotosc")
+trigger = 1
+
+[node name="OffsetConstant" type="Area2D" parent="Cards" unique_id=70]
+position = Vector2(-300, 265)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cards/OffsetConstant" unique_id=71]
+shape = SubResource("Rect_card")
+
+[node name="Panel" type="Panel" parent="Cards/OffsetConstant" unique_id=72]
+offset_left = -130.0
+offset_top = -32.0
+offset_right = 130.0
+offset_bottom = 32.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("SB_card")
+
+[node name="Label" type="Label" parent="Cards/OffsetConstant" unique_id=73]
+offset_left = -130.0
+offset_top = -32.0
+offset_right = 130.0
+offset_bottom = 32.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 20
 text = "Offset"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="InteractionFeedback" type="Node" parent="Cards/Offset" unique_id=603081406]
-script = ExtResource("1_fdbk")
+[node name="InteractionFeedback" type="Node" parent="Cards/OffsetConstant" unique_id=74]
+script = ExtResource("fdbk")
 
-[node name="FeedbackOffsetEffect" type="Node" parent="Cards/Offset/InteractionFeedback" unique_id=1193740045]
-script = ExtResource("4_offs")
+[node name="FeedbackOffsetEffect" type="Node" parent="Cards/OffsetConstant/InteractionFeedback" unique_id=75]
+script = ExtResource("e_off")
 hovered_offset = Vector2(0, -6)
 
-[node name="ShakeOnHover" type="Area2D" parent="Cards" unique_id=1600652489]
-position = Vector2(-318, -94)
+[node name="OffsetInstant" type="Area2D" parent="Cards" unique_id=80]
+position = Vector2(0, 265)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Cards/ShakeOnHover" unique_id=1188626815]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cards/OffsetInstant" unique_id=81]
 shape = SubResource("Rect_card")
 
-[node name="Panel" type="Panel" parent="Cards/ShakeOnHover" unique_id=342204163]
-offset_left = -147.0
-offset_top = -39.0
-offset_right = 147.0
-offset_bottom = 39.0
+[node name="Panel" type="Panel" parent="Cards/OffsetInstant" unique_id=82]
+offset_left = -130.0
+offset_top = -32.0
+offset_right = 130.0
+offset_bottom = 32.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("SB_card")
 
-[node name="Label" type="Label" parent="Cards/ShakeOnHover" unique_id=1025246746]
-offset_left = -147.0
-offset_top = -39.0
-offset_right = 147.0
-offset_bottom = 39.0
+[node name="Label" type="Label" parent="Cards/OffsetInstant" unique_id=83]
+offset_left = -130.0
+offset_top = -32.0
+offset_right = 130.0
+offset_bottom = 32.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 24
-text = "Shake on hover"
+theme_override_font_sizes/font_size = 20
+text = "Offset"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="InteractionFeedback" type="Node" parent="Cards/ShakeOnHover" unique_id=1652767481]
-script = ExtResource("1_fdbk")
+[node name="InteractionFeedback" type="Node" parent="Cards/OffsetInstant" unique_id=84]
+script = ExtResource("fdbk")
 
-[node name="FeedbackShakeEffect" type="Node" parent="Cards/ShakeOnHover/InteractionFeedback" unique_id=1674449677]
-script = ExtResource("3_shak")
+[node name="FeedbackOffsetOnceEffect" type="Node" parent="Cards/OffsetInstant/InteractionFeedback" unique_id=85]
+script = ExtResource("e_offonce")
 transition = 1
 
-[node name="ShakeOnPress" type="Area2D" parent="Cards" unique_id=1665506609]
-position = Vector2(0, -94)
+[node name="OffsetRepeated" type="Area2D" parent="Cards" unique_id=90]
+position = Vector2(300, 265)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Cards/ShakeOnPress" unique_id=2141186951]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cards/OffsetRepeated" unique_id=91]
 shape = SubResource("Rect_card")
 
-[node name="Panel" type="Panel" parent="Cards/ShakeOnPress" unique_id=1293855193]
-offset_left = -147.0
-offset_top = -39.0
-offset_right = 147.0
-offset_bottom = 39.0
+[node name="Panel" type="Panel" parent="Cards/OffsetRepeated" unique_id=92]
+offset_left = -130.0
+offset_top = -32.0
+offset_right = 130.0
+offset_bottom = 32.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("SB_card")
 
-[node name="Label" type="Label" parent="Cards/ShakeOnPress" unique_id=1070677588]
-offset_left = -147.0
-offset_top = -39.0
-offset_right = 147.0
-offset_bottom = 39.0
+[node name="Label" type="Label" parent="Cards/OffsetRepeated" unique_id=93]
+offset_left = -130.0
+offset_top = -32.0
+offset_right = 130.0
+offset_bottom = 32.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 24
-text = "Shake on press"
+theme_override_font_sizes/font_size = 20
+text = "Offset"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="InteractionFeedback" type="Node" parent="Cards/ShakeOnPress" unique_id=652475368]
-script = ExtResource("1_fdbk")
+[node name="InteractionFeedback" type="Node" parent="Cards/OffsetRepeated" unique_id=94]
+script = ExtResource("fdbk")
 
-[node name="FeedbackShakeEffect" type="Node" parent="Cards/ShakeOnPress/InteractionFeedback" unique_id=1716086043]
-script = ExtResource("3_shak")
-degrees = 3.0
-on_hover = false
-on_press = true
+[node name="FeedbackOffsetOscillatedEffect" type="Node" parent="Cards/OffsetRepeated/InteractionFeedback" unique_id=95]
+script = ExtResource("e_offosc")
+trigger = 1
+
+[node name="ModulateConstant" type="Area2D" parent="Cards" unique_id=100]
+position = Vector2(-300, 345)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cards/ModulateConstant" unique_id=101]
+shape = SubResource("Rect_card")
+
+[node name="Panel" type="Panel" parent="Cards/ModulateConstant" unique_id=102]
+offset_left = -130.0
+offset_top = -32.0
+offset_right = 130.0
+offset_bottom = 32.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("SB_card")
+
+[node name="Label" type="Label" parent="Cards/ModulateConstant" unique_id=103]
+offset_left = -130.0
+offset_top = -32.0
+offset_right = 130.0
+offset_bottom = 32.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "Modulate"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InteractionFeedback" type="Node" parent="Cards/ModulateConstant" unique_id=104]
+script = ExtResource("fdbk")
+
+[node name="FeedbackModulateEffect" type="Node" parent="Cards/ModulateConstant/InteractionFeedback" unique_id=105]
+script = ExtResource("e_mod")
+hovered_modulate = Color(0, 1.10015, 1.10015, 1)
+pressed_modulate = Color(0.901961, 0, 0.223529, 1)
+
+[node name="ModulateInstant" type="Area2D" parent="Cards" unique_id=110]
+position = Vector2(0, 345)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cards/ModulateInstant" unique_id=111]
+shape = SubResource("Rect_card")
+
+[node name="Panel" type="Panel" parent="Cards/ModulateInstant" unique_id=112]
+offset_left = -130.0
+offset_top = -32.0
+offset_right = 130.0
+offset_bottom = 32.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("SB_card")
+
+[node name="Label" type="Label" parent="Cards/ModulateInstant" unique_id=113]
+offset_left = -130.0
+offset_top = -32.0
+offset_right = 130.0
+offset_bottom = 32.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "Modulate"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InteractionFeedback" type="Node" parent="Cards/ModulateInstant" unique_id=114]
+script = ExtResource("fdbk")
+
+[node name="FeedbackModulateOnceEffect" type="Node" parent="Cards/ModulateInstant/InteractionFeedback" unique_id=115]
+script = ExtResource("e_modonce")
 transition = 1
 
-[node name="Pulse" type="Area2D" parent="Cards" unique_id=1893790507]
-position = Vector2(318, -94)
+[node name="ModulateRepeated" type="Area2D" parent="Cards" unique_id=120]
+position = Vector2(300, 345)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Cards/Pulse" unique_id=1655643933]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cards/ModulateRepeated" unique_id=121]
 shape = SubResource("Rect_card")
 
-[node name="Panel" type="Panel" parent="Cards/Pulse" unique_id=35637292]
-offset_left = -147.0
-offset_top = -39.0
-offset_right = 147.0
-offset_bottom = 39.0
+[node name="Panel" type="Panel" parent="Cards/ModulateRepeated" unique_id=122]
+offset_left = -130.0
+offset_top = -32.0
+offset_right = 130.0
+offset_bottom = 32.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("SB_card")
 
-[node name="Label" type="Label" parent="Cards/Pulse" unique_id=1209831668]
-offset_left = -147.0
-offset_top = -39.0
-offset_right = 147.0
-offset_bottom = 39.0
+[node name="Label" type="Label" parent="Cards/ModulateRepeated" unique_id=123]
+offset_left = -130.0
+offset_top = -32.0
+offset_right = 130.0
+offset_bottom = 32.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 24
-text = "Pulse"
+theme_override_font_sizes/font_size = 20
+text = "Modulate"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="InteractionFeedback" type="Node" parent="Cards/Pulse" unique_id=494324639]
-script = ExtResource("1_fdbk")
+[node name="InteractionFeedback" type="Node" parent="Cards/ModulateRepeated" unique_id=124]
+script = ExtResource("fdbk")
 
-[node name="FeedbackPulseEffect" type="Node" parent="Cards/Pulse/InteractionFeedback" unique_id=1606925861]
-script = ExtResource("6_puls")
-amplitude = 0.03
+[node name="FeedbackModulateOscillatedEffect" type="Node" parent="Cards/ModulateRepeated/InteractionFeedback" unique_id=125]
+script = ExtResource("e_modosc")
 trigger = 1
 
-[node name="Wobble" type="Area2D" parent="Cards" unique_id=1994839961]
-position = Vector2(-318, 0)
+[node name="Divider" type="Line2D" parent="Cards" unique_id=130]
+position = Vector2(0, 400)
+points = PackedVector2Array(-430, 0, 430, 0)
+width = 2.0
+default_color = Color(0.16, 0.21, 0.32, 0.25)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Cards/Wobble" unique_id=1507108145]
-shape = SubResource("Rect_card")
-
-[node name="Panel" type="Panel" parent="Cards/Wobble" unique_id=1652425012]
-offset_left = -147.0
-offset_top = -39.0
-offset_right = 147.0
-offset_bottom = 39.0
-mouse_filter = 2
-theme_override_styles/panel = SubResource("SB_card")
-
-[node name="Label" type="Label" parent="Cards/Wobble" unique_id=1914913743]
-offset_left = -147.0
-offset_top = -39.0
-offset_right = 147.0
-offset_bottom = 39.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 24
-text = "Wobble"
+[node name="ComboTitle" type="Label" parent="Cards" unique_id=131]
+offset_left = -160.0
+offset_top = 415.0
+offset_right = 160.0
+offset_bottom = 447.0
+theme_override_colors/font_color = Color(0.16, 0.21, 0.32, 1)
+theme_override_font_sizes/font_size = 22
+text = "Combined & Unique"
 horizontal_alignment = 1
-vertical_alignment = 1
 
-[node name="InteractionFeedback" type="Node" parent="Cards/Wobble" unique_id=1662227481]
-script = ExtResource("1_fdbk")
+[node name="Sticky" type="Area2D" parent="Cards" unique_id=140]
+position = Vector2(-300, 490)
 
-[node name="FeedbackWobbleEffect" type="Node" parent="Cards/Wobble/InteractionFeedback" unique_id=1681503775]
-script = ExtResource("8_wobb")
-trigger = 1
-
-[node name="Sticky" type="Area2D" parent="Cards" unique_id=1348146372]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Cards/Sticky" unique_id=1408015635]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cards/Sticky" unique_id=141]
 shape = SubResource("Rect_card")
 
-[node name="Panel" type="Panel" parent="Cards/Sticky" unique_id=1304066927]
-offset_left = -147.0
-offset_top = -39.0
-offset_right = 147.0
-offset_bottom = 39.0
+[node name="Panel" type="Panel" parent="Cards/Sticky" unique_id=142]
+offset_left = -130.0
+offset_top = -32.0
+offset_right = 130.0
+offset_bottom = 32.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("SB_card")
 
-[node name="Label" type="Label" parent="Cards/Sticky" unique_id=267442127]
-offset_left = -147.0
-offset_top = -39.0
-offset_right = 147.0
-offset_bottom = 39.0
+[node name="Label" type="Label" parent="Cards/Sticky" unique_id=143]
+offset_left = -130.0
+offset_top = -32.0
+offset_right = 130.0
+offset_bottom = 32.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 20
 text = "Sticky"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="InteractionFeedback" type="Node" parent="Cards/Sticky" unique_id=1454500972]
-script = ExtResource("1_fdbk")
+[node name="InteractionFeedback" type="Node" parent="Cards/Sticky" unique_id=144]
+script = ExtResource("fdbk")
 
-[node name="FeedbackStickyEffect" type="Node" parent="Cards/Sticky/InteractionFeedback" unique_id=1812717461]
-script = ExtResource("9_stic")
+[node name="FeedbackStickyEffect" type="Node" parent="Cards/Sticky/InteractionFeedback" unique_id=145]
+script = ExtResource("e_stic")
 
-[node name="Haptic" type="Area2D" parent="Cards" unique_id=350851140]
-position = Vector2(318, 0)
+[node name="Haptic" type="Area2D" parent="Cards" unique_id=150]
+position = Vector2(0, 490)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Cards/Haptic" unique_id=1846393862]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cards/Haptic" unique_id=151]
 shape = SubResource("Rect_card")
 
-[node name="Panel" type="Panel" parent="Cards/Haptic" unique_id=1431818494]
-offset_left = -147.0
-offset_top = -39.0
-offset_right = 147.0
-offset_bottom = 39.0
+[node name="Panel" type="Panel" parent="Cards/Haptic" unique_id=152]
+offset_left = -130.0
+offset_top = -32.0
+offset_right = 130.0
+offset_bottom = 32.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("SB_card")
 
-[node name="Label" type="Label" parent="Cards/Haptic" unique_id=503766908]
-offset_left = -147.0
-offset_top = -39.0
-offset_right = 147.0
-offset_bottom = 39.0
+[node name="Label" type="Label" parent="Cards/Haptic" unique_id=153]
+offset_left = -130.0
+offset_top = -32.0
+offset_right = 130.0
+offset_bottom = 32.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 20
 text = "Haptic (touch)"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="InteractionFeedback" type="Node" parent="Cards/Haptic" unique_id=126983612]
-script = ExtResource("1_fdbk")
+[node name="InteractionFeedback" type="Node" parent="Cards/Haptic" unique_id=154]
+script = ExtResource("fdbk")
 
-[node name="FeedbackHapticEffect" type="Node" parent="Cards/Haptic/InteractionFeedback" unique_id=309002227]
-script = ExtResource("10_hapt")
+[node name="FeedbackHapticEffect" type="Node" parent="Cards/Haptic/InteractionFeedback" unique_id=155]
+script = ExtResource("e_hapt")
 on_hover = false
-on_press = true
 
-[node name="OffsetAndRaise" type="Area2D" parent="Cards" unique_id=1860809462]
-position = Vector2(-318, 94)
+[node name="Cursor" type="Area2D" parent="Cards" unique_id=160]
+position = Vector2(300, 490)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Cards/OffsetAndRaise" unique_id=174655907]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cards/Cursor" unique_id=161]
 shape = SubResource("Rect_card")
 
-[node name="Panel" type="Panel" parent="Cards/OffsetAndRaise" unique_id=1144404144]
-offset_left = -147.0
-offset_top = -39.0
-offset_right = 147.0
-offset_bottom = 39.0
+[node name="Panel" type="Panel" parent="Cards/Cursor" unique_id=162]
+offset_left = -130.0
+offset_top = -32.0
+offset_right = 130.0
+offset_bottom = 32.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("SB_card")
 
-[node name="Label" type="Label" parent="Cards/OffsetAndRaise" unique_id=973160368]
-offset_left = -147.0
-offset_top = -39.0
-offset_right = 147.0
-offset_bottom = 39.0
+[node name="Label" type="Label" parent="Cards/Cursor" unique_id=163]
+offset_left = -130.0
+offset_top = -32.0
+offset_right = 130.0
+offset_bottom = 32.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 20
+text = "Cursor"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InteractionFeedback" type="Node" parent="Cards/Cursor" unique_id=164]
+script = ExtResource("fdbk")
+
+[node name="FeedbackCursorEffect" type="Node" parent="Cards/Cursor/InteractionFeedback" unique_id=165]
+script = ExtResource("e_curs")
+shape = 3
+
+[node name="ZIndex" type="Area2D" parent="Cards" unique_id=170]
+position = Vector2(-300, 570)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cards/ZIndex" unique_id=171]
+shape = SubResource("Rect_card")
+
+[node name="Panel" type="Panel" parent="Cards/ZIndex" unique_id=172]
+offset_left = -130.0
+offset_top = -32.0
+offset_right = 130.0
+offset_bottom = 32.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("SB_card")
+
+[node name="Label" type="Label" parent="Cards/ZIndex" unique_id=173]
+offset_left = -130.0
+offset_top = -32.0
+offset_right = 130.0
+offset_bottom = 32.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "Z-index"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InteractionFeedback" type="Node" parent="Cards/ZIndex" unique_id=174]
+script = ExtResource("fdbk")
+
+[node name="FeedbackZLevelEffect" type="Node" parent="Cards/ZIndex/InteractionFeedback" unique_id=175]
+script = ExtResource("e_zlvl")
+
+[node name="OffsetScaleZ" type="Area2D" parent="Cards" unique_id=180]
+position = Vector2(0, 570)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cards/OffsetScaleZ" unique_id=181]
+shape = SubResource("Rect_card")
+
+[node name="Panel" type="Panel" parent="Cards/OffsetScaleZ" unique_id=182]
+offset_left = -130.0
+offset_top = -32.0
+offset_right = 130.0
+offset_bottom = 32.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("SB_card")
+
+[node name="Label" type="Label" parent="Cards/OffsetScaleZ" unique_id=183]
+offset_left = -130.0
+offset_top = -32.0
+offset_right = 130.0
+offset_bottom = 32.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
 text = "Offset + Scale + Z"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="InteractionFeedback" type="Node" parent="Cards/OffsetAndRaise" unique_id=1792974701]
-script = ExtResource("1_fdbk")
+[node name="InteractionFeedback" type="Node" parent="Cards/OffsetScaleZ" unique_id=184]
+script = ExtResource("fdbk")
 
-[node name="FeedbackOffsetEffect" type="Node" parent="Cards/OffsetAndRaise/InteractionFeedback" unique_id=2064680920]
-script = ExtResource("4_offs")
+[node name="FeedbackOffsetEffect" type="Node" parent="Cards/OffsetScaleZ/InteractionFeedback" unique_id=185]
+script = ExtResource("e_off")
 hovered_offset = Vector2(0, -6)
 
-[node name="FeedbackScaleEffect" type="Node" parent="Cards/OffsetAndRaise/InteractionFeedback" unique_id=1542509138]
-script = ExtResource("2_scal")
+[node name="FeedbackScaleEffect" type="Node" parent="Cards/OffsetScaleZ/InteractionFeedback" unique_id=186]
+script = ExtResource("e_scale")
 hovered_scale = 1.12
 transition = 10
 
-[node name="FeedbackZLevelEffect" type="Node" parent="Cards/OffsetAndRaise/InteractionFeedback" unique_id=1167682308]
-script = ExtResource("5_zlvl")
+[node name="FeedbackZLevelEffect" type="Node" parent="Cards/OffsetScaleZ/InteractionFeedback" unique_id=187]
+script = ExtResource("e_zlvl")
 
-[node name="Elastic" type="Area2D" parent="Cards" unique_id=2069170833]
-position = Vector2(0, 94)
+[node name="Elastic" type="Area2D" parent="Cards" unique_id=190]
+position = Vector2(300, 570)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Cards/Elastic" unique_id=604689494]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cards/Elastic" unique_id=191]
 shape = SubResource("Rect_card")
 
-[node name="Panel" type="Panel" parent="Cards/Elastic" unique_id=1955308141]
-offset_left = -147.0
-offset_top = -39.0
-offset_right = 147.0
-offset_bottom = 39.0
+[node name="Panel" type="Panel" parent="Cards/Elastic" unique_id=192]
+offset_left = -130.0
+offset_top = -32.0
+offset_right = 130.0
+offset_bottom = 32.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("SB_card")
 
-[node name="Label" type="Label" parent="Cards/Elastic" unique_id=1253654413]
-offset_left = -147.0
-offset_top = -39.0
-offset_right = 147.0
-offset_bottom = 39.0
+[node name="Label" type="Label" parent="Cards/Elastic" unique_id=193]
+offset_left = -130.0
+offset_top = -32.0
+offset_right = 130.0
+offset_bottom = 32.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 20
 text = "Elastic"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="InteractionFeedback" type="Node" parent="Cards/Elastic" unique_id=776271946]
-script = ExtResource("1_fdbk")
+[node name="InteractionFeedback" type="Node" parent="Cards/Elastic" unique_id=194]
+script = ExtResource("fdbk")
 
-[node name="FeedbackScaleEffect" type="Node" parent="Cards/Elastic/InteractionFeedback" unique_id=1783054312]
-script = ExtResource("2_scal")
+[node name="FeedbackScaleEffect" type="Node" parent="Cards/Elastic/InteractionFeedback" unique_id=195]
+script = ExtResource("e_scale")
 hovered_scale = 1.12
 duration_sec = 0.5
 y_lag = 1.0
 transition = 6
 
-[node name="Sink" type="Area2D" parent="Cards" unique_id=1341951844]
-position = Vector2(318, 94)
+[node name="Squishy" type="Area2D" parent="Cards" unique_id=200]
+position = Vector2(-300, 650)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Cards/Sink" unique_id=1241976983]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cards/Squishy" unique_id=201]
 shape = SubResource("Rect_card")
 
-[node name="Panel" type="Panel" parent="Cards/Sink" unique_id=1784224476]
-offset_left = -147.0
-offset_top = -39.0
-offset_right = 147.0
-offset_bottom = 39.0
+[node name="Panel" type="Panel" parent="Cards/Squishy" unique_id=202]
+offset_left = -130.0
+offset_top = -32.0
+offset_right = 130.0
+offset_bottom = 32.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("SB_card")
 
-[node name="Label" type="Label" parent="Cards/Sink" unique_id=1907167122]
-offset_left = -147.0
-offset_top = -39.0
-offset_right = 147.0
-offset_bottom = 39.0
+[node name="Label" type="Label" parent="Cards/Squishy" unique_id=203]
+offset_left = -130.0
+offset_top = -32.0
+offset_right = 130.0
+offset_bottom = 32.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 24
-text = "Sink"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="InteractionFeedback" type="Node" parent="Cards/Sink" unique_id=420095639]
-script = ExtResource("1_fdbk")
-
-[node name="FeedbackOffsetEffect" type="Node" parent="Cards/Sink/InteractionFeedback" unique_id=1104005587]
-script = ExtResource("4_offs")
-hovered_offset = Vector2(0, 0)
-pressed_offset = Vector2(0, 4)
-
-[node name="Heartbeat" type="Area2D" parent="Cards" unique_id=1139053675]
-position = Vector2(-318, 188)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Cards/Heartbeat" unique_id=2069467580]
-shape = SubResource("Rect_card")
-
-[node name="Panel" type="Panel" parent="Cards/Heartbeat" unique_id=363258959]
-offset_left = -147.0
-offset_top = -39.0
-offset_right = 147.0
-offset_bottom = 39.0
-mouse_filter = 2
-theme_override_styles/panel = SubResource("SB_card")
-
-[node name="Label" type="Label" parent="Cards/Heartbeat" unique_id=335703094]
-offset_left = -147.0
-offset_top = -39.0
-offset_right = 147.0
-offset_bottom = 39.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 24
-text = "Heartbeat"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="InteractionFeedback" type="Node" parent="Cards/Heartbeat" unique_id=520176845]
-script = ExtResource("1_fdbk")
-
-[node name="FeedbackPulseEffect" type="Node" parent="Cards/Heartbeat/InteractionFeedback" unique_id=989714874]
-script = ExtResource("6_puls")
-amplitude = 0.06
-trigger = 1
-period_sec = 0.35
-
-[node name="Squishy" type="Area2D" parent="Cards" unique_id=45542802]
-position = Vector2(0, 188)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Cards/Squishy" unique_id=769428084]
-shape = SubResource("Rect_card")
-
-[node name="Panel" type="Panel" parent="Cards/Squishy" unique_id=86279780]
-offset_left = -147.0
-offset_top = -39.0
-offset_right = 147.0
-offset_bottom = 39.0
-mouse_filter = 2
-theme_override_styles/panel = SubResource("SB_card")
-
-[node name="Label" type="Label" parent="Cards/Squishy" unique_id=1854554772]
-offset_left = -147.0
-offset_top = -39.0
-offset_right = 147.0
-offset_bottom = 39.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 20
 text = "Squishy"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="InteractionFeedback" type="Node" parent="Cards/Squishy" unique_id=613898724]
-script = ExtResource("1_fdbk")
+[node name="InteractionFeedback" type="Node" parent="Cards/Squishy" unique_id=204]
+script = ExtResource("fdbk")
+pivot_ratio = Vector2(0.5, 1)
 
-[node name="FeedbackScaleEffect" type="Node" parent="Cards/Squishy/InteractionFeedback" unique_id=151682383]
-script = ExtResource("2_scal")
+[node name="FeedbackScaleEffect" type="Node" parent="Cards/Squishy/InteractionFeedback" unique_id=205]
+script = ExtResource("e_scale")
 hovered_scale = 1.12
 transition = 10
 
-[node name="AllTogether" type="Area2D" parent="Cards" unique_id=957259633]
-position = Vector2(318, 188)
+[node name="AllTogether" type="Area2D" parent="Cards" unique_id=210]
+position = Vector2(0, 650)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Cards/AllTogether" unique_id=1636367127]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cards/AllTogether" unique_id=211]
 shape = SubResource("Rect_card")
 
-[node name="Panel" type="Panel" parent="Cards/AllTogether" unique_id=1994650262]
-offset_left = -147.0
-offset_top = -39.0
-offset_right = 147.0
-offset_bottom = 39.0
+[node name="Panel" type="Panel" parent="Cards/AllTogether" unique_id=212]
+offset_left = -130.0
+offset_top = -32.0
+offset_right = 130.0
+offset_bottom = 32.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("SB_card")
 
-[node name="Label" type="Label" parent="Cards/AllTogether" unique_id=1505214182]
-offset_left = -147.0
-offset_top = -39.0
-offset_right = 147.0
-offset_bottom = 39.0
+[node name="Label" type="Label" parent="Cards/AllTogether" unique_id=213]
+offset_left = -130.0
+offset_top = -32.0
+offset_right = 130.0
+offset_bottom = 32.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 24
-text = "Floating and punchy"
+theme_override_font_sizes/font_size = 18
+text = "Floating & punchy"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="InteractionFeedback" type="Node" parent="Cards/AllTogether" unique_id=774900821]
-script = ExtResource("1_fdbk")
+[node name="InteractionFeedback" type="Node" parent="Cards/AllTogether" unique_id=214]
+script = ExtResource("fdbk")
 
-[node name="FeedbackStickyEffect" type="Node" parent="Cards/AllTogether/InteractionFeedback" unique_id=312451819]
-script = ExtResource("9_stic")
+[node name="FeedbackStickyEffect" type="Node" parent="Cards/AllTogether/InteractionFeedback" unique_id=215]
+script = ExtResource("e_stic")
 
-[node name="FeedbackScaleEffect" type="Node" parent="Cards/AllTogether/InteractionFeedback" unique_id=243537224]
-script = ExtResource("2_scal")
+[node name="FeedbackScaleEffect" type="Node" parent="Cards/AllTogether/InteractionFeedback" unique_id=216]
+script = ExtResource("e_scale")
 transition = 10
 
-[node name="FeedbackShakeEffect" type="Node" parent="Cards/AllTogether/InteractionFeedback" unique_id=1407370137]
-script = ExtResource("3_shak")
+[node name="FeedbackRotationOnceEffect" type="Node" parent="Cards/AllTogether/InteractionFeedback" unique_id=217]
+script = ExtResource("e_rotonce")
 degrees = 3.0
-on_press = true
 transition = 1
 
-[node name="FeedbackWobbleEffect" type="Node" parent="Cards/AllTogether/InteractionFeedback" unique_id=1586762330]
-script = ExtResource("8_wobb")
+[node name="FeedbackRotationOscillatedEffect" type="Node" parent="Cards/AllTogether/InteractionFeedback" unique_id=218]
+script = ExtResource("e_rotosc")
+mode = 1
 trigger = 1
-
-[node name="FeedbackZLevelEffect" type="Node" parent="Cards/AllTogether/InteractionFeedback" unique_id=482084080]
-script = ExtResource("5_zlvl")
-metadata/_custom_type_script = "uid://dde72tlibetmu"
