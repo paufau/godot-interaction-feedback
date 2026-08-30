@@ -68,17 +68,35 @@ feedback.add_effect(FeedbackShakeEffect.new())
 
 ## Effects
 
-| Node                     | What it does                   |
-| ------------------------ | ------------------------------ |
-| `FeedbackScaleEffect`    | Scales the node                |
-| `FeedbackOffsetEffect`   | Shifts position                |
-| `FeedbackModulateEffect` | Controls the visual modulation |
-| `FeedbackZLevelEffect`   | Raises `z_index`               |
-| `FeedbackPulseEffect`    | Looping scale property         |
-| `FeedbackWobbleEffect`   | Looping rotation property      |
-| `FeedbackShakeEffect`    | One rotation kick              |
-| `FeedbackStickyEffect`   | Leans toward the pointer       |
-| `FeedbackHapticEffect`   | Vibrates the device            |
+Effects naming convention:
+
+- `Feedback<Property>Effect` - applied all time during hover/press
+- `Feedback<Property>OnceEffect` — fires once per state update
+- `Feedback<Property>OscillatedEffect` — loops continuously
+
+| Effect                             | What it does                                | Control | Node2D |
+| ---------------------------------- | ------------------------------------------- | :-----: | :----: |
+| `FeedbackScaleEffect`              | Scale on hover/press                        |   ✅    |   ✅   |
+| `FeedbackScaleOnceEffect`          | Scale kick                                  |   ✅    |   ✅   |
+| `FeedbackScaleOscillatedEffect`    | Scale breathe                               |   ✅    |   ✅   |
+| `FeedbackRotationEffect`           | Tilt on hover/press                         |   ✅    |   ✅   |
+| `FeedbackRotationOnceEffect`       | Rotation kick                               |   ✅    |   ✅   |
+| `FeedbackRotationOscillatedEffect` | Rotation sway                               |   ✅    |   ✅   |
+| `FeedbackOffsetEffect`             | Position shift                              |   ✅    |   ✅   |
+| `FeedbackOffsetOnceEffect`         | Positional kick                             |   ✅    |   ✅   |
+| `FeedbackOffsetOscillatedEffect`   | Vertical bob                                |   ✅    |   ✅   |
+| `FeedbackStickyEffect`             | Leans toward the pointer                    |   ✅    |   ✅   |
+| `FeedbackModulateEffect`           | Color tint                                  |   ✅    |   ✅   |
+| `FeedbackModulateOnceEffect`       | Color flash                                 |   ✅    |   ✅   |
+| `FeedbackModulateOscillatedEffect` | Color breathe                               |   ✅    |   ✅   |
+| `FeedbackZLevelEffect`             | Raises `z_index`                            |   ✅    |   ✅   |
+| `FeedbackHapticEffect`             | Vibrates the device                         |   ✅    |   ✅   |
+| `FeedbackCursorEffect`             | Changes the cursor shape                    |   ✅    |   ❌   |
+| ⚠️ `FeedbackPulseEffect`           | Alias -> `FeedbackScaleOscillatedEffect`    |   ✅    |   ✅   |
+| ⚠️ `FeedbackWobbleEffect`          | Alias -> `FeedbackRotationOscillatedEffect` |   ✅    |   ✅   |
+| ⚠️ `FeedbackShakeEffect`           | Alias -> `FeedbackRotationOnceEffect`       |   ✅    |   ✅   |
+
+> ⚠️ marks **deprecated** classes, use their analogs instead
 
 > Note: On touch screens hover effects are skipped by default, since there is no pointer to hover with. Override per node with `touch_mode`
 

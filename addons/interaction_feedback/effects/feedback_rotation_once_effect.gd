@@ -1,8 +1,7 @@
 @tool
 @icon("uid://b2jgxuywv33ir")
-class_name FeedbackShakeEffect
+class_name FeedbackRotationOnceEffect
 extends FeedbackTriggerEffect
-## @deprecated: Use [FeedbackRotationOnceEffect] instead
 
 @export var degrees := 1.5
 @export var duration_sec := 0.16
@@ -11,8 +10,6 @@ var _rotation := 0.0
 
 
 func _init() -> void:
-	on_hover = true
-	on_press = false
 	transition = Tween.TRANS_SINE
 	easing = Tween.EASE_OUT
 

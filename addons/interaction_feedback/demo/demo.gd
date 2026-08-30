@@ -3,8 +3,8 @@ extends Control
 const CONTROLS_SCENE := preload("uid://ngtnd7h0d6h0")
 const NODE2D_SCENE := preload("uid://bswv7sc1reh0r")
 
-@onready var _stage: Control = $Stage
-@onready var _switch: CheckButton = $Header/Switch
+@onready var _stage: Control = $Margin/Layout/Scroll/Stage
+@onready var _switch: CheckButton = $Margin/Layout/Header/Switch
 
 var _current: Node
 

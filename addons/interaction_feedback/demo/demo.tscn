@@ -54,7 +54,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Stage" type="Control" parent="." unique_id=302932750]
+[node name="Margin" type="MarginContainer" parent="." unique_id=302932750]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -62,27 +62,28 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
 
-[node name="Header" type="VBoxContainer" parent="." unique_id=1571280349]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -198.5
-offset_top = 120.0
-offset_right = 198.5
-offset_bottom = 227.0
-grow_horizontal = 2
+[node name="Layout" type="VBoxContainer" parent="Margin" unique_id=1571280349]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Header" type="VBoxContainer" parent="Margin/Layout" unique_id=1856682493]
+layout_mode = 2
+size_flags_horizontal = 4
 theme_override_constants/separation = 10
 
-[node name="Title" type="Label" parent="Header" unique_id=1856682493]
+[node name="Title" type="Label" parent="Margin/Layout/Header" unique_id=563515089]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.16, 0.21, 0.32, 1)
 theme_override_font_sizes/font_size = 40
 text = "InteractionFeedback"
 horizontal_alignment = 1
 
-[node name="Switch" type="CheckButton" parent="Header" unique_id=563515089]
+[node name="Switch" type="CheckButton" parent="Margin/Layout/Header" unique_id=770001122]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0.2, 0.26, 0.36, 1)
@@ -96,3 +97,14 @@ theme_override_styles/hover = SubResource("SB_switch_hover")
 theme_override_styles/hover_pressed = SubResource("SB_switch_hover")
 theme_override_styles/focus = SubResource("SB_switch_normal")
 text = "Try on Node2D"
+
+[node name="Scroll" type="ScrollContainer" parent="Margin/Layout" unique_id=880011234]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="Stage" type="HBoxContainer" parent="Margin/Layout/Scroll" unique_id=990022345]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
