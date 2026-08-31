@@ -549,7 +549,7 @@ func _enable_parent_input_handling() -> void:
 	if parent == null:
 		return
 
-	var undo_redo := EditorInterface.get_editor_undo_redo()
+	var undo_redo = Engine.get_singleton(&"EditorInterface").get_editor_undo_redo()
 
 	undo_redo.create_action("Enable input_pickable")
 	undo_redo.add_do_property(parent, "input_pickable", true)
