@@ -351,7 +351,7 @@ func _handle_focus_exited() -> void:
 
 
 func _update_focus(focused: bool) -> void:
-	_is_focused = focused and not _is_mouse_over
+	_is_focused = focused and not _is_mouse_over and not _is_hover_suppressed()
 	_update_hover()
 
 
