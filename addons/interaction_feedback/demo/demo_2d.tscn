@@ -17,6 +17,7 @@
 [ext_resource type="Script" uid="uid://bpainjbj3pqmt" path="res://addons/interaction_feedback/effects/feedback_sticky_effect.gd" id="e_stic"]
 [ext_resource type="Script" uid="uid://dde72tlibetmu" path="res://addons/interaction_feedback/effects/feedback_z_level_effect.gd" id="e_zlvl"]
 [ext_resource type="Script" uid="uid://dgnfej0vnae1p" path="res://addons/interaction_feedback/interaction_feedback.gd" id="fdbk"]
+[ext_resource type="Script" path="res://addons/interaction_feedback/demo/demo_2d.gd" id="demo2d"]
 
 [sub_resource type="RectangleShape2D" id="Rect_card"]
 size = Vector2(260, 64)
@@ -32,6 +33,7 @@ shadow_size = 10
 shadow_offset = Vector2(0, 4)
 
 [node name="Demo2D" type="Node2D" unique_id=1]
+script = ExtResource("demo2d")
 
 [node name="Cards" type="Node2D" parent="." unique_id=2]
 position = Vector2(936, 40)
