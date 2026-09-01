@@ -20,12 +20,12 @@ enum TouchMode {
 const INPUT_MODE_PATH := ^"/root/FeedbackInputMode"
 const IDLE_FRAMES_BEFORE_SLEEP := 2
 
-enum DisabledSuppression {
-	NONE = 0, ## Play everything even when disabled
-	HOVER = 1, ## Suppress hovers
-	PRESS = 2, ## Suppress presses
-	ALL = HOVER | PRESS, ## Suppress both
-}
+
+const MASK_SUPPRESS_WHEN_DISABLED_NONE := 0 ## Play everything even when disabled
+const MASK_SUPPRESS_WHEN_DISABLED_PRESS := 1 ## Suppress presses
+const MASK_SUPPRESS_WHEN_DISABLED_MOUSE_HOVER := 2 ## Suppress hovers via mouse
+const MASK_SUPPRESS_WHEN_DISABLED_FOCUS_HOVER := 4 ## Suppress hovers via keyboard/gamepad
+const MASK_SUPPRESS_WHEN_DISABLED_ALL := MASK_SUPPRESS_WHEN_DISABLED_PRESS | MASK_SUPPRESS_WHEN_DISABLED_MOUSE_HOVER | MASK_SUPPRESS_WHEN_DISABLED_FOCUS_HOVER
 
 static var _warned_missing_input_mode := false
 
@@ -52,7 +52,7 @@ static var _warned_missing_input_mode := false
 @export var hover_on_focus := true
 @export var focus_hover_requires_navigation := true # drops hover when input device changes
 @export var activate_action := &"ui_select"
-@export var suppress_when_disabled: DisabledSuppression = DisabledSuppression.PRESS
+@export_flags("Press", "Mouse hover", "Focus hover") var suppress_when_disabled := MASK_SUPPRESS_WHEN_DISABLED_PRESS | MASK_SUPPRESS_WHEN_DISABLED_MOUSE_HOVER
 
 @export_tool_button("Enable parent input_pickable")
 var _enable_input_handling_button := _enable_parent_input_handling
@@ -354,7 +354,7 @@ func _catch_up_hover() -> void:
 
 
 func _handle_pointer_entered() -> void:
-	if _is_hover_suppressed() or _disabled_suppresses(DisabledSuppression.HOVER):
+	if _is_hover_suppressed() or _disabled_suppresses(MASK_SUPPRESS_WHEN_DISABLED_MOUSE_HOVER):
 		return
 
 	_is_mouse_over = true
@@ -381,7 +381,7 @@ func _handle_device_changed(_device: FeedbackInputDevice.Device) -> void:
 
 
 func _update_focus(focused: bool) -> void:
-	var active := focused and not _is_mouse_over and not _is_hover_suppressed() and not _disabled_suppresses(DisabledSuppression.HOVER)
+	var active := focused and not _is_mouse_over and not _is_hover_suppressed() and not _disabled_suppresses(MASK_SUPPRESS_WHEN_DISABLED_FOCUS_HOVER)
 	_is_focused = active and _is_focus_hover_allowed()
 	_update_hover()
 
@@ -397,7 +397,7 @@ func _update_hover() -> void:
 	set_hovered(_is_mouse_over or _is_focused)
 
 
-func _disabled_suppresses(feedback: DisabledSuppression) -> bool:
+func _disabled_suppresses(feedback: int) -> bool:
 	return (suppress_when_disabled & feedback) != 0 and _target is BaseButton and (_target as BaseButton).disabled
 
 
@@ -435,7 +435,7 @@ func _handle_gui_input(event: InputEvent) -> void:
 
 
 func _handle_activate_input(event: InputEvent) -> void:
-	if event.is_action_pressed(activate_action) and not _disabled_suppresses(DisabledSuppression.PRESS):
+	if event.is_action_pressed(activate_action) and not _disabled_suppresses(MASK_SUPPRESS_WHEN_DISABLED_PRESS):
 		set_pressed(true)
 	elif event.is_action_released(activate_action):
 		set_pressed(false)
