@@ -105,7 +105,6 @@ vertical_alignment = 1
 
 [node name="InteractionFeedback" type="Node" parent="Cards/ScaleConstant" unique_id=14]
 script = ExtResource("fdbk")
-activate_action = &"ui_accept"
 
 [node name="FeedbackScaleEffect" type="Node" parent="Cards/ScaleConstant/InteractionFeedback" unique_id=15]
 script = ExtResource("e_scale")
@@ -138,7 +137,6 @@ vertical_alignment = 1
 
 [node name="InteractionFeedback" type="Node" parent="Cards/ScaleInstant" unique_id=24]
 script = ExtResource("fdbk")
-activate_action = &"ui_accept"
 
 [node name="FeedbackScaleOnceEffect" type="Node" parent="Cards/ScaleInstant/InteractionFeedback" unique_id=25]
 script = ExtResource("e_scaleonce")
@@ -172,7 +170,6 @@ vertical_alignment = 1
 
 [node name="InteractionFeedback" type="Node" parent="Cards/ScaleRepeated" unique_id=34]
 script = ExtResource("fdbk")
-activate_action = &"ui_accept"
 
 [node name="FeedbackScaleOscillatedEffect" type="Node" parent="Cards/ScaleRepeated/InteractionFeedback" unique_id=35]
 script = ExtResource("e_scaleosc")
@@ -206,7 +203,6 @@ vertical_alignment = 1
 
 [node name="InteractionFeedback" type="Node" parent="Cards/RotationConstant" unique_id=44]
 script = ExtResource("fdbk")
-activate_action = &"ui_accept"
 
 [node name="FeedbackRotationEffect" type="Node" parent="Cards/RotationConstant/InteractionFeedback" unique_id=45]
 script = ExtResource("e_rot")
@@ -240,7 +236,6 @@ vertical_alignment = 1
 
 [node name="InteractionFeedback" type="Node" parent="Cards/RotationInstant" unique_id=54]
 script = ExtResource("fdbk")
-activate_action = &"ui_accept"
 
 [node name="FeedbackRotationOnceEffect" type="Node" parent="Cards/RotationInstant/InteractionFeedback" unique_id=55]
 script = ExtResource("e_rotonce")
@@ -275,7 +270,6 @@ vertical_alignment = 1
 
 [node name="InteractionFeedback" type="Node" parent="Cards/RotationRepeated" unique_id=64]
 script = ExtResource("fdbk")
-activate_action = &"ui_accept"
 
 [node name="FeedbackRotationOscillatedEffect" type="Node" parent="Cards/RotationRepeated/InteractionFeedback" unique_id=65]
 script = ExtResource("e_rotosc")
@@ -309,7 +303,6 @@ vertical_alignment = 1
 
 [node name="InteractionFeedback" type="Node" parent="Cards/OffsetConstant" unique_id=74]
 script = ExtResource("fdbk")
-activate_action = &"ui_accept"
 
 [node name="FeedbackOffsetEffect" type="Node" parent="Cards/OffsetConstant/InteractionFeedback" unique_id=75]
 script = ExtResource("e_off")
@@ -342,7 +335,6 @@ vertical_alignment = 1
 
 [node name="InteractionFeedback" type="Node" parent="Cards/OffsetInstant" unique_id=84]
 script = ExtResource("fdbk")
-activate_action = &"ui_accept"
 
 [node name="FeedbackOffsetOnceEffect" type="Node" parent="Cards/OffsetInstant/InteractionFeedback" unique_id=85]
 script = ExtResource("e_offonce")
@@ -376,7 +368,6 @@ vertical_alignment = 1
 
 [node name="InteractionFeedback" type="Node" parent="Cards/OffsetRepeated" unique_id=94]
 script = ExtResource("fdbk")
-activate_action = &"ui_accept"
 
 [node name="FeedbackOffsetOscillatedEffect" type="Node" parent="Cards/OffsetRepeated/InteractionFeedback" unique_id=95]
 script = ExtResource("e_offosc")
@@ -409,7 +400,6 @@ vertical_alignment = 1
 
 [node name="InteractionFeedback" type="Node" parent="Cards/ModulateConstant" unique_id=104]
 script = ExtResource("fdbk")
-activate_action = &"ui_accept"
 
 [node name="FeedbackModulateEffect" type="Node" parent="Cards/ModulateConstant/InteractionFeedback" unique_id=105]
 script = ExtResource("e_mod")
@@ -443,7 +433,6 @@ vertical_alignment = 1
 
 [node name="InteractionFeedback" type="Node" parent="Cards/ModulateInstant" unique_id=114]
 script = ExtResource("fdbk")
-activate_action = &"ui_accept"
 
 [node name="FeedbackModulateOnceEffect" type="Node" parent="Cards/ModulateInstant/InteractionFeedback" unique_id=115]
 script = ExtResource("e_modonce")
@@ -477,7 +466,6 @@ vertical_alignment = 1
 
 [node name="InteractionFeedback" type="Node" parent="Cards/ModulateRepeated" unique_id=124]
 script = ExtResource("fdbk")
-activate_action = &"ui_accept"
 
 [node name="FeedbackModulateOscillatedEffect" type="Node" parent="Cards/ModulateRepeated/InteractionFeedback" unique_id=125]
 script = ExtResource("e_modosc")
@@ -526,7 +514,6 @@ vertical_alignment = 1
 
 [node name="InteractionFeedback" type="Node" parent="Cards/Sticky" unique_id=144]
 script = ExtResource("fdbk")
-activate_action = &"ui_accept"
 
 [node name="FeedbackStickyEffect" type="Node" parent="Cards/Sticky/InteractionFeedback" unique_id=145]
 script = ExtResource("e_stic")
@@ -558,7 +545,6 @@ vertical_alignment = 1
 
 [node name="InteractionFeedback" type="Node" parent="Cards/Haptic" unique_id=154]
 script = ExtResource("fdbk")
-activate_action = &"ui_accept"
 
 [node name="FeedbackHapticEffect" type="Node" parent="Cards/Haptic/InteractionFeedback" unique_id=155]
 script = ExtResource("e_hapt")
@@ -592,7 +578,6 @@ vertical_alignment = 1
 
 [node name="InteractionFeedback" type="Node" parent="Cards/Cursor" unique_id=164]
 script = ExtResource("fdbk")
-activate_action = &"ui_accept"
 
 [node name="FeedbackCursorEffect" type="Node" parent="Cards/Cursor/InteractionFeedback" unique_id=165]
 script = ExtResource("e_curs")
@@ -625,7 +610,6 @@ vertical_alignment = 1
 
 [node name="InteractionFeedback" type="Node" parent="Cards/ZIndex" unique_id=174]
 script = ExtResource("fdbk")
-activate_action = &"ui_accept"
 
 [node name="FeedbackZLevelEffect" type="Node" parent="Cards/ZIndex/InteractionFeedback" unique_id=175]
 script = ExtResource("e_zlvl")
@@ -657,7 +641,6 @@ vertical_alignment = 1
 
 [node name="InteractionFeedback" type="Node" parent="Cards/OffsetScaleZ" unique_id=184]
 script = ExtResource("fdbk")
-activate_action = &"ui_accept"
 
 [node name="FeedbackOffsetEffect" type="Node" parent="Cards/OffsetScaleZ/InteractionFeedback" unique_id=185]
 script = ExtResource("e_off")
@@ -698,7 +681,6 @@ vertical_alignment = 1
 
 [node name="InteractionFeedback" type="Node" parent="Cards/Elastic" unique_id=194]
 script = ExtResource("fdbk")
-activate_action = &"ui_accept"
 
 [node name="FeedbackScaleEffect" type="Node" parent="Cards/Elastic/InteractionFeedback" unique_id=195]
 script = ExtResource("e_scale")
@@ -735,7 +717,6 @@ vertical_alignment = 1
 [node name="InteractionFeedback" type="Node" parent="Cards/Squishy" unique_id=204]
 script = ExtResource("fdbk")
 pivot_ratio = Vector2(0.5, 1)
-activate_action = &"ui_accept"
 
 [node name="FeedbackScaleEffect" type="Node" parent="Cards/Squishy/InteractionFeedback" unique_id=205]
 script = ExtResource("e_scale")
@@ -769,7 +750,6 @@ vertical_alignment = 1
 
 [node name="InteractionFeedback" type="Node" parent="Cards/AllTogether" unique_id=214]
 script = ExtResource("fdbk")
-activate_action = &"ui_accept"
 
 [node name="FeedbackStickyEffect" type="Node" parent="Cards/AllTogether/InteractionFeedback" unique_id=215]
 script = ExtResource("e_stic")
