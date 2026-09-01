@@ -17,9 +17,10 @@ var _canvas_item: CanvasItem
 
 
 func _tick(delta: float) -> void:
+	var is_following_pointer := _stuck and _is_pointer_hovered()
 	var desired := Vector2.ZERO
 
-	if _stuck:
+	if is_following_pointer:
 		var item := _get_item()
 
 		if item != null:
@@ -27,10 +28,10 @@ func _tick(delta: float) -> void:
 				max_offset_px
 			)
 
-	var speed := follow_speed if _stuck else release_speed
+	var speed := follow_speed if is_following_pointer else release_speed
 	_offset = _offset.lerp(desired, 1.0 - exp(-maxf(speed, 0.0) * delta))
 
-	if not _stuck and _offset.length() < SETTLE_EPSILON_PX:
+	if not is_following_pointer and _offset.length() < SETTLE_EPSILON_PX:
 		_offset = Vector2.ZERO
 
 
@@ -43,10 +44,12 @@ func _get_value() -> Variant:
 
 
 func _apply_state(hovered: bool, _pressed: bool) -> void:
-	if _stuck == hovered:
+	var stuck := hovered and _is_pointer_hovered()
+
+	if _stuck == stuck:
 		return
 
-	_stuck = hovered
+	_stuck = stuck
 
 	if _stuck:
 		_anchor = _get_centre()
@@ -89,3 +92,9 @@ func _get_item() -> CanvasItem:
 			_canvas_item = feedback.get_target()
 
 	return _canvas_item
+
+
+func _is_pointer_hovered() -> bool:
+	var feedback := get_parent() as InteractionFeedback
+
+	return feedback != null and feedback.is_pointer_hovered()

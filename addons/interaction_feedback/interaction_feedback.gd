@@ -43,6 +43,8 @@ static var _warned_missing_input_mode := false
 
 @export var touch_mode: TouchMode = TouchMode.AUTO
 @export var hover_on_focus := true
+@export var focus_hover_requires_navigation := true # drops hover when input device changes
+@export var activate_action := &"ui_select"
 @export var respect_disabled := true
 
 @export_tool_button("Enable parent input_pickable")
@@ -133,6 +135,9 @@ func _ready() -> void:
 		if effect != null:
 			_register_effect(effect)
 
+	if _is_control and hover_on_focus and focus_hover_requires_navigation and _input_mode != null:
+		_input_mode.device_changed.connect(_handle_device_changed)
+
 	if auto_connect:
 		_connect_target()
 
@@ -158,6 +163,9 @@ func _process(delta: float) -> void:
 
 
 func _exit_tree() -> void:
+	if _input_mode != null and _input_mode.device_changed.is_connected(_handle_device_changed):
+		_input_mode.device_changed.disconnect(_handle_device_changed)
+
 	if Engine.is_editor_hint() or not is_instance_valid(_target):
 		return
 
@@ -197,6 +205,10 @@ func get_target() -> CanvasItem:
 	return _target
 
 
+func get_input_mode() -> Node:
+	return _input_mode
+
+
 func replay_state(effect: FeedbackEffect) -> void:
 	if Engine.is_editor_hint():
 		return
@@ -210,6 +222,10 @@ func is_hovered() -> bool:
 
 func is_pressed() -> bool:
 	return _pressed
+
+
+func is_pointer_hovered() -> bool:
+	return _is_mouse_over
 
 
 func set_hovered(value: bool) -> void:
@@ -273,6 +289,7 @@ func _connect_target() -> void:
 		button.mouse_exited.connect(_handle_pointer_exited)
 		button.button_down.connect(set_pressed.bind(true))
 		button.button_up.connect(set_pressed.bind(false))
+		button.gui_input.connect(_handle_activate_input)
 
 		_connect_focus(button)
 		_catch_up_hover()
@@ -348,11 +365,25 @@ func _handle_focus_entered() -> void:
 
 func _handle_focus_exited() -> void:
 	_update_focus(false)
+	set_pressed(false)
+
+
+func _handle_device_changed(_device: FeedbackInputDevice.Device) -> void:
+	if _is_control:
+		_update_focus((_target as Control).has_focus())
 
 
 func _update_focus(focused: bool) -> void:
-	_is_focused = focused and not _is_mouse_over and not _is_hover_suppressed()
+	var active := focused and not _is_mouse_over and not _is_hover_suppressed() and not _is_disabled()
+	_is_focused = active and _is_focus_hover_allowed()
 	_update_hover()
+
+
+func _is_focus_hover_allowed() -> bool:
+	if not focus_hover_requires_navigation or _input_mode == null:
+		return true
+
+	return _input_mode.is_navigation_active()
 
 
 func _update_hover() -> void:
@@ -392,6 +423,15 @@ func _handle_gui_input(event: InputEvent) -> void:
 		elif touch.index == _press_index:
 			_press_index = -1
 			set_pressed(false)
+	else:
+		_handle_activate_input(event)
+
+
+func _handle_activate_input(event: InputEvent) -> void:
+	if event.is_action_pressed(activate_action) and not _is_disabled():
+		set_pressed(true)
+	elif event.is_action_released(activate_action):
+		set_pressed(false)
 
 
 func _broadcast_state_change() -> void:
