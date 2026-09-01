@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://bswv7sc1reh0r"]
 
+[ext_resource type="Script" uid="uid://cdm2hmq3sy6p4" path="res://addons/interaction_feedback/demo/demo_2d.gd" id="demo2d"]
 [ext_resource type="Script" uid="uid://cmpkdbb4s36b" path="res://addons/interaction_feedback/effects/feedback_cursor_effect.gd" id="e_curs"]
 [ext_resource type="Script" uid="uid://5q8vj1yhnntt" path="res://addons/interaction_feedback/effects/feedback_haptic_effect.gd" id="e_hapt"]
 [ext_resource type="Script" uid="uid://b8ig24xnb8pjf" path="res://addons/interaction_feedback/effects/feedback_modulate_effect.gd" id="e_mod"]
@@ -17,7 +18,6 @@
 [ext_resource type="Script" uid="uid://bpainjbj3pqmt" path="res://addons/interaction_feedback/effects/feedback_sticky_effect.gd" id="e_stic"]
 [ext_resource type="Script" uid="uid://dde72tlibetmu" path="res://addons/interaction_feedback/effects/feedback_z_level_effect.gd" id="e_zlvl"]
 [ext_resource type="Script" uid="uid://dgnfej0vnae1p" path="res://addons/interaction_feedback/interaction_feedback.gd" id="fdbk"]
-[ext_resource type="Script" path="res://addons/interaction_feedback/demo/demo_2d.gd" id="demo2d"]
 
 [sub_resource type="RectangleShape2D" id="Rect_card"]
 size = Vector2(260, 64)
@@ -239,8 +239,8 @@ script = ExtResource("fdbk")
 
 [node name="FeedbackRotationOnceEffect" type="Node" parent="Cards/RotationInstant/InteractionFeedback" unique_id=55]
 script = ExtResource("e_rotonce")
-on_press = true
 degrees = 3.0
+on_press = true
 transition = 1
 
 [node name="RotationRepeated" type="Area2D" parent="Cards" unique_id=60]
@@ -273,6 +273,7 @@ script = ExtResource("fdbk")
 
 [node name="FeedbackRotationOscillatedEffect" type="Node" parent="Cards/RotationRepeated/InteractionFeedback" unique_id=65]
 script = ExtResource("e_rotosc")
+mode = 1
 trigger = 1
 
 [node name="OffsetConstant" type="Area2D" parent="Cards" unique_id=70]
@@ -548,6 +549,7 @@ script = ExtResource("fdbk")
 [node name="FeedbackHapticEffect" type="Node" parent="Cards/Haptic/InteractionFeedback" unique_id=155]
 script = ExtResource("e_hapt")
 on_hover = false
+on_press = true
 
 [node name="Cursor" type="Area2D" parent="Cards" unique_id=160]
 position = Vector2(300, 490)
@@ -758,8 +760,8 @@ transition = 10
 
 [node name="FeedbackRotationOnceEffect" type="Node" parent="Cards/AllTogether/InteractionFeedback" unique_id=217]
 script = ExtResource("e_rotonce")
-on_press = true
 degrees = 3.0
+on_press = true
 transition = 1
 
 [node name="FeedbackRotationOscillatedEffect" type="Node" parent="Cards/AllTogether/InteractionFeedback" unique_id=218]

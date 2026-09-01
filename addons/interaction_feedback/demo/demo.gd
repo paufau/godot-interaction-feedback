@@ -20,3 +20,16 @@ func _show(node2d: bool) -> void:
 
 	_current = (NODE2D_SCENE if node2d else CONTROLS_SCENE).instantiate()
 	_stage.add_child(_current)
+
+	if not node2d:
+		_grab_first_focus.call_deferred()
+
+
+func _grab_first_focus() -> void:
+	if not is_instance_valid(_current):
+		return
+
+	var buttons := _current.find_children("*", "Button", true, false)
+
+	if not buttons.is_empty():
+		(buttons[0] as Button).grab_focus()
