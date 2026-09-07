@@ -1,0 +1,39 @@
+name: tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      GODOT_DISABLE_LEAK_CHECKS: "1"
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Install GdUnit4
+        run: |
+          git clone --depth 1 --branch v6.2.1 https://github.com/godot-gdunit-labs/gdUnit4.git /tmp/gdunit4
+          cp -r /tmp/gdunit4/addons/gdUnit4 addons/gdUnit4
+
+      - uses: lihop/setup-godot@v3
+        with:
+          version: 4.7.1-stable
+
+      - name: Import project
+        run: godot --headless --import
+
+      - name: Run tests
+        run: |
+          export GODOT_BIN="$(which godot)"
+          ./addons/gdUnit4/runtest.sh -a res://tests
+
+      - name: Upload test report
+        if: always()
+        uses: actions/upload-artifact@v5
+        with:
+          name: gdunit-report
+          path: reports/**
+          if-no-files-found: ignore
