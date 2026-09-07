@@ -17,3 +17,7 @@ mono_crash.*.json
 # files
 **/.DS_Store
 dist/
+
+# Test framework
+addons/gdUnit4/
+reports/
