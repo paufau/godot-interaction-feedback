@@ -1,7 +1,7 @@
 @tool
 extends EditorPlugin
 
-const AUTOLOAD_FEEDBACK_INPUT_MODE := "uid://bt4bdvwsya5a3"
+const AUTOLOAD_FEEDBACK_INPUT_MODE := "res://addons/interaction_feedback/feedback_input_mode.gd"
 
 
 func _enable_plugin() -> void:
