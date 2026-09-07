@@ -31,6 +31,20 @@ func test_z_level_effect_raises_on_hover() -> void:
 	)
 
 
+func test_rotation_effect_tilts_on_hover() -> void:
+	await _assert_hover_settles(
+		FeedbackRotationEffect.new(), func(target: Control): return target.offset_transform_rotation,
+		deg_to_rad(4.0), 0.0, 200
+	)
+
+
+func test_cursor_effect_changes_shape_on_hover() -> void:
+	await _assert_hover_settles(
+		FeedbackCursorEffect.new(), func(target: Control): return target.mouse_default_cursor_shape,
+		Input.CURSOR_POINTING_HAND, Input.CURSOR_ARROW, 100
+	)
+
+
 func test_disabled_effect_does_nothing() -> void:
 	var effect := FeedbackScaleEffect.new()
 	effect.enabled = false
@@ -63,4 +77,6 @@ func _assert_hover_settles(effect: FeedbackEffect, read: Callable, hovered: Vari
 func _eq(actual: Variant, expected: Variant) -> bool:
 	if actual is Vector2 or actual is Color:
 		return actual.is_equal_approx(expected)
+	if actual is float:
+		return is_equal_approx(actual, expected)
 	return actual == expected
