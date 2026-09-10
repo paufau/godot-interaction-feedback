@@ -5,3 +5,7 @@
 /**        export-ignore
 /addons    !export-ignore
 /addons/** !export-ignore
+
+/addons/interaction_feedback/demo/showcase*   export-ignore
+/addons/interaction_feedback/demo/cursors     export-ignore
+/addons/interaction_feedback/demo/cursors/**  export-ignore

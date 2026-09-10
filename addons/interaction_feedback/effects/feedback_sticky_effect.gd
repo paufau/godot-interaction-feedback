@@ -21,12 +21,8 @@ func _tick(delta: float) -> void:
 	var desired := Vector2.ZERO
 
 	if is_following_pointer:
-		var item := _get_item()
-
-		if item != null:
-			desired = ((item.get_global_mouse_position() - _anchor) * strength).limit_length(
-				max_offset_px
-			)
+		var feedback := get_parent() as InteractionFeedback
+		desired = ((feedback.get_pointer_position() - _anchor) * strength).limit_length(max_offset_px)
 
 	var speed := follow_speed if is_following_pointer else release_speed
 	_offset = _offset.lerp(desired, 1.0 - exp(-maxf(speed, 0.0) * delta))

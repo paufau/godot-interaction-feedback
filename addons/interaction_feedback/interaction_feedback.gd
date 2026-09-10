@@ -81,6 +81,7 @@ var _is_control := false
 var _hovered := false
 var _pressed := false
 var _is_mouse_over := false
+var _virtual_pointer := Vector2.INF
 var _is_focused := false
 var _press_index := -1
 var _composed := {}
@@ -251,11 +252,28 @@ func set_pressed(value: bool) -> void:
 	_broadcast_state_change()
 
 
+func set_virtual_pointer(position: Vector2, pressed := false) -> void:
+	_virtual_pointer = position
+
+	if position.is_finite():
+		_handle_pointer_entered()
+	else:
+		_handle_pointer_exited()
+		_catch_up_hover()
+
+	set_pressed(pressed and not _disabled_suppresses(MASK_SUPPRESS_WHEN_DISABLED_PRESS))
+
+
+func get_pointer_position() -> Vector2:
+	return _virtual_pointer if _virtual_pointer.is_finite() else _target.get_global_mouse_position()
+
+
 ## Stops everything and restores the node's initial state
 func reset() -> void:
 	_hovered = false
 	_pressed = false
 	_is_mouse_over = false
+	_virtual_pointer = Vector2.INF
 	_is_focused = false
 	_press_index = -1
 
