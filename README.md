@@ -11,28 +11,7 @@ Plug-n-play UI animations for `Control` or `Node2D` nodes
 
 <br>
 
-<table>
-	<tr>
-		<td width="33%"><img alt="Scale" src="https://raw.githubusercontent.com/paufau/godot-interaction-feedback/refs/heads/main/assets/buttons/scale.gif" /></td>
-		<td width="33%"><img alt="Offset" src="https://raw.githubusercontent.com/paufau/godot-interaction-feedback/refs/heads/main/assets/buttons/offset.gif" /></td>
-		<td width="33%"><img alt="Modulation" src="https://raw.githubusercontent.com/paufau/godot-interaction-feedback/refs/heads/main/assets/buttons/modulation.gif" /></td>
-	</tr>
-	<tr>
-		<td><img alt="Pulse" src="https://raw.githubusercontent.com/paufau/godot-interaction-feedback/refs/heads/main/assets/buttons/pulse.gif" /></td>
-		<td><img alt="Wobble" src="https://raw.githubusercontent.com/paufau/godot-interaction-feedback/refs/heads/main/assets/buttons/wobble.gif" /></td>
-		<td><img alt="Shake on press" src="https://raw.githubusercontent.com/paufau/godot-interaction-feedback/refs/heads/main/assets/buttons/shakeonpress.gif" /></td>
-	</tr>
-	<tr>
-		<td><img alt="Sticky" src="https://raw.githubusercontent.com/paufau/godot-interaction-feedback/refs/heads/main/assets/buttons/sticky.gif" /></td>
-		<td><img alt="Elastic" src="https://raw.githubusercontent.com/paufau/godot-interaction-feedback/refs/heads/main/assets/buttons/elastic.gif" /></td>
-		<td><img alt="Squishy" src="https://raw.githubusercontent.com/paufau/godot-interaction-feedback/refs/heads/main/assets/buttons/squishy.gif" /></td>
-	</tr>
-	<tr>
-		<td><img alt="Heartbeat" src="https://raw.githubusercontent.com/paufau/godot-interaction-feedback/refs/heads/main/assets/buttons/heartbeat.gif" /></td>
-		<td><img alt="Floating" src="https://raw.githubusercontent.com/paufau/godot-interaction-feedback/refs/heads/main/assets/buttons/floating.gif" /></td>
-		<td><img alt="Offset + scale + z" src="https://raw.githubusercontent.com/paufau/godot-interaction-feedback/refs/heads/main/assets/buttons/offsetscalez.gif" /></td>
-	</tr>
-</table>
+<img src="https://raw.githubusercontent.com/paufau/godot-interaction-feedback/refs/heads/main/assets/buttons/buttons.gif" />
 
 <br>
 
