@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bwgwceuf58jer" path="res://addons/interaction_feedback/demo/showcase.gd" id="1_showcase"]
 [ext_resource type="PackedScene" uid="uid://ngtnd7h0d6h0" path="res://addons/interaction_feedback/demo/demo_controls.tscn" id="2_demo"]
 
-[node name="Showcase" type="Control"]
+[node name="Showcase" type="Control" unique_id=117679893]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,7 +13,7 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_showcase")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="." unique_id=228837774]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -22,7 +22,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Center" type="CenterContainer" parent="."]
+[node name="Center" type="CenterContainer" parent="." unique_id=1567367632]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -31,7 +31,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="DemoControls" parent="Center" instance=ExtResource("2_demo")]
+[node name="DemoControls" parent="Center" unique_id=1375308443 instance=ExtResource("2_demo")]
 layout_mode = 2
 
-[node name="Cursors" type="CanvasLayer" parent="."]
+[node name="Cursors" type="CanvasLayer" parent="." unique_id=1733361701]

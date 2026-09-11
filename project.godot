@@ -13,6 +13,7 @@ config_version=5
 config/name="InteractionFeedback Demo"
 run/main_scene="res://addons/interaction_feedback/demo/demo.tscn"
 config/features=PackedStringArray("4.7")
+config/icon="uid://ddf05bdvga5uk"
 
 [autoload]
 
